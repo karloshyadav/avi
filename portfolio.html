@@ -24,12 +24,8 @@
             position: absolute;
             width: 200px; /* Increased size */
             height: 200px; /* Adjusted height to maintain aspect ratio */
-            opacity: 1; /* Increased opacity for clearer visibility */
-            animation: floatAnimation 10s infinite linear;
-        }
-        @keyframes floatAnimation {
-            0% { transform: translateY(100vh); opacity: 0.2; }
-            100% { transform: translateY(-10vh); opacity: 1; }
+            opacity: 1; /* Set opacity to 1 for better clarity */
+            transition: transform 2s ease-in-out; /* Smooth transition for movement */
         }
         .game-container {
             position: relative;
@@ -108,10 +104,10 @@
 </head>
 <body>
     <div class="floating-images">
-        <img src="assets/img/001.png" style="left: 10%; animation-duration: 12s;">
-        <img src="assets/img/002.png" style="left: 40%; animation-duration: 15s;">
-        <img src="assets/img/001.png" style="left: 70%; animation-duration: 18s;">
-        <img src="assets/img/002.png" style="left: 90%; animation-duration: 20s;">
+        <img src="assets/img/001.png" id="image1">
+        <img src="assets/img/002.png" id="image2">
+        <img src="assets/img/001.png" id="image3">
+        <img src="assets/img/002.png" id="image4">
     </div>
     <h1>Catch the Square</h1>
     <div id="score">Score: 0</div>
@@ -131,9 +127,28 @@
         const startButton = document.getElementById("start");
         const modal = document.getElementById("gameOverModal");
         const finalScore = document.getElementById("finalScore");
+        const images = document.querySelectorAll(".floating-images img");
         let score = 0;
         let gameInterval;
         let gameDuration = 10000;
+
+        // Function to move images randomly
+        function moveImageRandomly(image) {
+            const maxX = window.innerWidth - image.width;
+            const maxY = window.innerHeight - image.height;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            image.style.left = `${randomX}px`;
+            image.style.top = `${randomY}px`;
+        }
+
+        // Move images every 2 seconds
+        function startFloating() {
+            setInterval(() => {
+                images.forEach(moveImageRandomly);
+            }, 2000); // Change position every 2 seconds
+        }
 
         function moveSquare() {
             const maxX = gameContainer.clientWidth - square.clientWidth;
@@ -167,6 +182,7 @@
         }
 
         startButton.addEventListener("click", startGame);
+        startFloating(); // Start the random movement of images
     </script>
 </body>
 </html>
