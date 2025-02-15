@@ -3,35 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tic-Tac-Toe</title>
+    <title>Catch the Square</title>
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
         }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(3, 100px);
-            grid-template-rows: repeat(3, 100px);
-            gap: 5px;
-            justify-content: center;
+        .game-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            border: 2px solid black;
+            margin: auto;
             margin-top: 20px;
+            overflow: hidden;
+            position: relative;
         }
-        .cell {
-            width: 100px;
-            height: 100px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2em;
-            background-color: #f0f0f0;
-            border: 2px solid #333;
+        .square {
+            width: 50px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
             cursor: pointer;
         }
-        .cell.taken {
-            cursor: not-allowed;
+        #score {
+            font-size: 1.5em;
+            margin-top: 10px;
         }
-        #reset {
+        #start {
             margin-top: 20px;
             padding: 10px 20px;
             font-size: 1.2em;
@@ -40,63 +39,48 @@
     </style>
 </head>
 <body>
-    <h1>Tic-Tac-Toe</h1>
-    <div class="board" id="board"></div>
-    <button id="reset">Reset Game</button>
+    <h1>Catch the Square</h1>
+    <div id="score">Score: 0</div>
+    <button id="start">Start Game</button>
+    <div class="game-container" id="gameContainer">
+        <div class="square" id="square"></div>
+    </div>
     <script>
-        const board = document.getElementById("board");
-        const resetButton = document.getElementById("reset");
-        let currentPlayer = "X";
-        let gameBoard = Array(9).fill(null);
+        const square = document.getElementById("square");
+        const gameContainer = document.getElementById("gameContainer");
+        const scoreDisplay = document.getElementById("score");
+        const startButton = document.getElementById("start");
+        let score = 0;
+        let gameInterval;
+        let gameDuration = 10000;
 
-        function checkWinner() {
-            const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8],
-                [0, 3, 6], [1, 4, 7], [2, 5, 8],
-                [0, 4, 8], [2, 4, 6]
-            ];
-            for (let pattern of winPatterns) {
-                const [a, b, c] = pattern;
-                if (gameBoard[a] && gameBoard[a] === gameBoard[b] && gameBoard[a] === gameBoard[c]) {
-                    alert(`${currentPlayer} wins!`);
-                    return true;
-                }
-            }
-            if (!gameBoard.includes(null)) {
-                alert("It's a draw!");
-                return true;
-            }
-            return false;
+        function moveSquare() {
+            const maxX = gameContainer.clientWidth - square.clientWidth;
+            const maxY = gameContainer.clientHeight - square.clientHeight;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            square.style.left = `${randomX}px`;
+            square.style.top = `${randomY}px`;
         }
 
-        function handleClick(index) {
-            if (gameBoard[index] || checkWinner()) return;
-            gameBoard[index] = currentPlayer;
-            renderBoard();
-            if (!checkWinner()) {
-                currentPlayer = currentPlayer === "X" ? "O" : "X";
-            }
+        function startGame() {
+            score = 0;
+            scoreDisplay.textContent = "Score: 0";
+            square.addEventListener("click", increaseScore);
+            gameInterval = setInterval(moveSquare, 500);
+            setTimeout(() => {
+                clearInterval(gameInterval);
+                square.removeEventListener("click", increaseScore);
+                alert("Game Over! Your score: " + score);
+            }, gameDuration);
         }
 
-        function renderBoard() {
-            board.innerHTML = "";
-            gameBoard.forEach((value, index) => {
-                const cell = document.createElement("div");
-                cell.classList.add("cell");
-                if (value) cell.classList.add("taken");
-                cell.textContent = value;
-                cell.addEventListener("click", () => handleClick(index));
-                board.appendChild(cell);
-            });
+        function increaseScore() {
+            score++;
+            scoreDisplay.textContent = "Score: " + score;
         }
 
-        resetButton.addEventListener("click", () => {
-            gameBoard = Array(9).fill(null);
-            currentPlayer = "X";
-            renderBoard();
-        });
-
-        renderBoard();
+        startButton.addEventListener("click", startGame);
     </script>
 </body>
 </html>
