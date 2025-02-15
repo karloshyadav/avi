@@ -17,24 +17,38 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            padding: 20px;
         }
         .container {
             background: white;
             padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             text-align: center;
-            max-width: 600px;
+            max-width: 800px;
+            width: 100%;
+        }
+        h1 {
+            font-size: 26px;
+            margin-bottom: 20px;
+            color: #333;
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
         }
         .grid img {
             width: 100%;
-            height: auto;
-            border-radius: 5px;
+            height: 200px; /* Bigger Images */
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .grid img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
@@ -51,9 +65,9 @@
             <img src="assets/img/007.png" alt="Picture 7">
             <img src="assets/img/008.png" alt="Picture 8">
             <img src="assets/img/0010.png" alt="Picture 9">
-            <img src="assets/img/0011.png" alt="Picture 9">
-            <img src="assets/img/B1.png" alt="Picture 9">
-            <img src="assets/img/A1.png" alt="Picture 9">
+            <img src="assets/img/0011.png" alt="Picture 10">
+            <img src="assets/img/B1.png" alt="Picture 11">
+            <img src="assets/img/A1.png" alt="Picture 12">
         </div>
     </div>
 </body>
