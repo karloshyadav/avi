@@ -15,6 +15,7 @@
             height: 100%; /* Ensure full height */
             margin: 0;
             padding: 0;
+            overflow: auto; /* Enable page scrolling */
         }
         body {
             background: linear-gradient(135deg, #74ebd5, #acb6e5);
@@ -22,11 +23,12 @@
             justify-content: center;
             align-items: center;
             height: 100%;
+            padding: 20px;
         }
         .container {
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             background: white;
             width: 100%;
@@ -34,7 +36,7 @@
             padding: 20px;
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            overflow: hidden;
+            overflow: auto; /* Allow scrolling within the container */
         }
         h1 {
             font-size: 3rem;
@@ -43,16 +45,15 @@
         }
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive grid */
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust size of images */
+            gap: 20px; /* Increased gap between images */
             width: 100%;
-            height: calc(100% - 100px); /* Adjust grid height to fit within screen */
-            overflow-y: auto; /* Enable scroll if images overflow */
+            max-height: 80vh; /* Prevents the grid from getting too tall */
+            overflow-y: auto; /* Allows scrolling if grid overflows */
         }
         .grid img {
             width: 100%;
-            height: auto;
-            max-height: 250px; /* Control image height */
+            height: 300px; /* Increased height for bigger images */
             object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
