@@ -25,7 +25,6 @@
             width: 200px; /* Increased size */
             height: 200px; /* Adjusted height to maintain aspect ratio */
             opacity: 1; /* Set opacity to 1 for better clarity */
-            transition: transform 2s ease-in-out; /* Smooth transition for movement */
         }
         .game-container {
             position: relative;
@@ -106,8 +105,8 @@
     <div class="floating-images">
         <img src="assets/img/001.png" id="image1">
         <img src="assets/img/002.png" id="image2">
-        <img src="assets/img/001.png" id="image3">
-        <img src="assets/img/002.png" id="image4">
+        <img src="assets/img/003.png" id="image3">
+        <img src="assets/img/004.png" id="image4">
     </div>
     <h1>Catch the Square</h1>
     <div id="score">Score: 0</div>
@@ -132,22 +131,35 @@
         let gameInterval;
         let gameDuration = 10000;
 
-        // Function to move images randomly
+        // Function to move images randomly in different directions
         function moveImageRandomly(image) {
-            const maxX = window.innerWidth - image.width;
-            const maxY = window.innerHeight - image.height;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
+            const moveAmount = 10; // Distance the image will move per interval
+            const direction = Math.floor(Math.random() * 4); // Random direction (0=left, 1=right, 2=up, 3=down)
 
-            image.style.left = `${randomX}px`;
-            image.style.top = `${randomY}px`;
+            let currentLeft = parseInt(image.style.left || 0);
+            let currentTop = parseInt(image.style.top || 0);
+
+            switch (direction) {
+                case 0: // Move left
+                    image.style.left = `${Math.max(currentLeft - moveAmount, 0)}px`;
+                    break;
+                case 1: // Move right
+                    image.style.left = `${Math.min(currentLeft + moveAmount, window.innerWidth - image.width)}px`;
+                    break;
+                case 2: // Move up
+                    image.style.top = `${Math.max(currentTop - moveAmount, 0)}px`;
+                    break;
+                case 3: // Move down
+                    image.style.top = `${Math.min(currentTop + moveAmount, window.innerHeight - image.height)}px`;
+                    break;
+            }
         }
 
-        // Move images every 2 seconds
+        // Move images every 100 milliseconds in random directions
         function startFloating() {
             setInterval(() => {
                 images.forEach(moveImageRandomly);
-            }, 2000); // Change position every 2 seconds
+            }, 100); // Update position every 100ms
         }
 
         function moveSquare() {
@@ -182,7 +194,7 @@
         }
 
         startButton.addEventListener("click", startGame);
-        startFloating(); // Start the random movement of images
+        startFloating(); // Start the random floating movement of images
     </script>
 </body>
 </html>
