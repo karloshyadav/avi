@@ -30,7 +30,6 @@
             width: 200px;
             height: 200px;
             opacity: 1;
-            transition: transform 4s linear, left 4s linear, top 4s linear;
         }
         h1 {
             font-size: 2.5em;
@@ -113,8 +112,8 @@
     <div class="floating-images">
         <img src="assets/img/001.png" id="image1">
         <img src="assets/img/002.png" id="image2">
-        <img src="assets/img/003.png" id="image3">
-        <img src="assets/img/007.png" id="image4">
+        <img src="assets/img/001.png" id="image3">
+        <img src="assets/img/002.png" id="image4">
     </div>
     
     <h1>Catch the Square</h1>
@@ -131,35 +130,31 @@
     </div>
 
     <script>
-        function moveImageSmoothly(image) {
-            function move() {
-                const directions = [
-                    { x: 1, y: 0 },  // Right
-                    { x: -1, y: 0 }, // Left
-                    { x: 0, y: 1 },  // Down
-                    { x: 0, y: -1 }  // Up
-                ];
-                const direction = directions[Math.floor(Math.random() * directions.length)];
+        function moveImageVertically(image, startX) {
+            let yPos = -200; // Start above the screen
+            image.style.left = `${startX}px`;
+            image.style.top = `${yPos}px`;
 
-                let maxX = window.innerWidth - image.clientWidth;
-                let maxY = window.innerHeight - image.clientHeight;
-                let newX = Math.random() * maxX;
-                let newY = Math.random() * maxY;
+            function animate() {
+                yPos += 2; // Move down smoothly
+                image.style.top = `${yPos}px`;
 
-                image.style.left = `${newX}px`;
-                image.style.top = `${newY}px`;
+                if (yPos > window.innerHeight) {
+                    yPos = -200; // Reset to the top
+                }
 
-                setTimeout(move, Math.random() * 4000 + 2000);
+                requestAnimationFrame(animate);
             }
-
-            image.style.position = "absolute";
-            image.style.left = `${Math.random() * (window.innerWidth - image.clientWidth)}px`;
-            image.style.top = `${Math.random() * (window.innerHeight - image.clientHeight)}px`;
-
-            move();
+            animate();
         }
 
-        document.querySelectorAll(".floating-images img").forEach(moveImageSmoothly);
+        // Move first two images on the left side (10% and 30% of the screen width)
+        moveImageVertically(document.getElementById("image1"), window.innerWidth * 0.1);
+        moveImageVertically(document.getElementById("image2"), window.innerWidth * 0.3);
+
+        // Move last two images on the right side (70% and 90% of the screen width)
+        moveImageVertically(document.getElementById("image3"), window.innerWidth * 0.7);
+        moveImageVertically(document.getElementById("image4"), window.innerWidth * 0.9);
 
         const square = document.getElementById("square");
         const gameContainer = document.getElementById("gameContainer");
