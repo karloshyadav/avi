@@ -132,7 +132,7 @@
     <script>
         function moveImageVertically(image, startX) {
             let yPos = -200; // Start above the screen
-            image.style.left = `${startX - window.innerWidth * 0.05}px`; // Shift left slightly
+            image.style.left = `${startX}px`; 
             image.style.top = `${yPos}px`;
 
             function animate() {
@@ -148,13 +148,13 @@
             animate();
         }
 
-        // Move first two images on the left side
-        moveImageVertically(document.getElementById("image1"), window.innerWidth * 0.05);
-        moveImageVertically(document.getElementById("image2"), window.innerWidth * 0.25);
+        // Move first two images slightly more centered
+        moveImageVertically(document.getElementById("image1"), window.innerWidth * 0.15);
+        moveImageVertically(document.getElementById("image2"), window.innerWidth * 0.30);
 
-        // Move last two images on the right side
-        moveImageVertically(document.getElementById("image3"), window.innerWidth * 0.65);
-        moveImageVertically(document.getElementById("image4"), window.innerWidth * 0.85);
+        // Move last two images slightly more centered
+        moveImageVertically(document.getElementById("image3"), window.innerWidth * 0.60);
+        moveImageVertically(document.getElementById("image4"), window.innerWidth * 0.75);
 
         const square = document.getElementById("square");
         const gameContainer = document.getElementById("gameContainer");
