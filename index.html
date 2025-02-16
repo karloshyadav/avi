@@ -11,6 +11,21 @@
       rel="stylesheet"
       href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
     />
+    
+    <style>
+    /* CSS applied only to the .home__social section */
+    .home__social {
+      display: flex;
+      justify-content: center; /* Centers the icons horizontally */
+      gap: 20px; /* Adds space between icons */
+    }
+
+    .home__social-icon .home__icon {
+      font-size: 40px; /* Optional: Adjust this if you want a base size */
+      transform: scale(1.5); /* Scales the icon to 1.5 times its original size */
+      transition: transform 0.3s ease; /* Smooth transition when scaling */
+    }
+  </style>
   </head>
 
   <body oncontextmenu="return false">
@@ -72,23 +87,22 @@
         <div class="home__container container grid">
           <div class="home__content grid">
             <div class="home__social">
-              <a
-                href="https://www.facebook.com/abnish.yadav.73"
-                target="_blank"
-                class="home__social-icon"
-              >
-              <i class="uil uil-facebook-f home__icon"></i>
-            </a>
+    <a
+      href="https://www.facebook.com/abnish.yadav.73"
+      target="_blank"
+      class="home__social-icon"
+    >
+      <i class="uil uil-facebook-f home__icon"></i>
+    </a>
 
-              <a
-                href="https://www.instagram.com/avi_avi0727/"
-                target="_blank"
-                class="home__social-icon"
-              >
-              <i class="uil uil-instagram home__icon"></i>
-
-            </a>
-            </div>
+    <a
+      href="https://www.instagram.com/avi_avi0727/"
+      target="_blank"
+      class="home__social-icon"
+    >
+      <i class="uil uil-instagram home__icon"></i>
+    </a>
+  </div>
             <div class="home__img">
               <svg
                 class="home__blob"
