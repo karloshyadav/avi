@@ -22,82 +22,10 @@
         }
         .floating-images img {
             position: absolute;
-            width: 200px; /* Increased size */
-            height: 200px; /* Adjusted height to maintain aspect ratio */
-            opacity: 1; /* Set opacity to 1 for better clarity */
-        }
-        .game-container {
-            position: relative;
-            width: 300px;
-            height: 300px;
-            border: 4px solid white;
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            margin: auto;
-            margin-top: 20px;
-            overflow: hidden;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        .square {
-            width: 50px;
-            height: 50px;
-            background: red;
-            border-radius: 8px;
-            position: absolute;
-            cursor: pointer;
-            transition: transform 0.1s ease-in-out;
-        }
-        .square:active {
-            transform: scale(1.1);
-        }
-        #score {
-            font-size: 2em;
-            margin-top: 10px;
-            font-weight: bold;
-            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-        }
-        #start {
-            margin-top: 20px;
-            padding: 12px 24px;
-            font-size: 1.5em;
-            font-weight: bold;
-            cursor: pointer;
-            background: #ff5e62;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            transition: 0.3s;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-        #start:hover {
-            background: #ff3b41;
-            transform: scale(1.05);
-        }
-        .modal {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            color: black;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-            text-align: center;
-        }
-        .modal button {
-            margin-top: 10px;
-            padding: 8px 16px;
-            cursor: pointer;
-            background: #ff5e62;
-            border: none;
-            border-radius: 6px;
-            color: white;
-            transition: 0.3s;
-        }
-        .modal button:hover {
-            background: #ff3b41;
+            width: 200px; /* Bigger images */
+            height: 200px;
+            opacity: 1;
+            transition: transform 4s linear, left 4s linear, top 4s linear; /* Smooth movement */
         }
     </style>
 </head>
@@ -105,96 +33,40 @@
     <div class="floating-images">
         <img src="assets/img/001.png" id="image1">
         <img src="assets/img/002.png" id="image2">
-        <img src="assets/img/003.png" id="image3">
-        <img src="assets/img/004.png" id="image4">
+        <img src="assets/img/001.png" id="image3">
+        <img src="assets/img/002.png" id="image4">
     </div>
-    <h1>Catch the Square</h1>
-    <div id="score">Score: 0</div>
-    <button id="start">Start Game</button>
-    <div class="game-container" id="gameContainer">
-        <div class="square" id="square"></div>
-    </div>
-    <div class="modal" id="gameOverModal">
-        <h2>Game Over!</h2>
-        <p id="finalScore"></p>
-        <button onclick="closeModal()">Close</button>
-    </div>
+
     <script>
-        const square = document.getElementById("square");
-        const gameContainer = document.getElementById("gameContainer");
-        const scoreDisplay = document.getElementById("score");
-        const startButton = document.getElementById("start");
-        const modal = document.getElementById("gameOverModal");
-        const finalScore = document.getElementById("finalScore");
-        const images = document.querySelectorAll(".floating-images img");
-        let score = 0;
-        let gameInterval;
-        let gameDuration = 10000;
+        function moveImageSmoothly(image) {
+            function move() {
+                const directions = [
+                    { x: 1, y: 0 },  // Right
+                    { x: -1, y: 0 }, // Left
+                    { x: 0, y: 1 },  // Down
+                    { x: 0, y: -1 }, // Up
+                ];
+                const direction = directions[Math.floor(Math.random() * directions.length)];
 
-        // Function to move images randomly in different directions
-        function moveImageRandomly(image) {
-            const moveAmount = 10; // Distance the image will move per interval
-            const direction = Math.floor(Math.random() * 4); // Random direction (0=left, 1=right, 2=up, 3=down)
+                let maxX = window.innerWidth - image.clientWidth;
+                let maxY = window.innerHeight - image.clientHeight;
+                let newX = Math.random() * maxX;
+                let newY = Math.random() * maxY;
 
-            let currentLeft = parseInt(image.style.left || 0);
-            let currentTop = parseInt(image.style.top || 0);
+                image.style.left = `${newX}px`;
+                image.style.top = `${newY}px`;
 
-            switch (direction) {
-                case 0: // Move left
-                    image.style.left = `${Math.max(currentLeft - moveAmount, 0)}px`;
-                    break;
-                case 1: // Move right
-                    image.style.left = `${Math.min(currentLeft + moveAmount, window.innerWidth - image.width)}px`;
-                    break;
-                case 2: // Move up
-                    image.style.top = `${Math.max(currentTop - moveAmount, 0)}px`;
-                    break;
-                case 3: // Move down
-                    image.style.top = `${Math.min(currentTop + moveAmount, window.innerHeight - image.height)}px`;
-                    break;
+                setTimeout(move, Math.random() * 4000 + 2000); // Change direction every 2-6 seconds
             }
+
+            image.style.position = "absolute";
+            image.style.left = `${Math.random() * (window.innerWidth - image.clientWidth)}px`;
+            image.style.top = `${Math.random() * (window.innerHeight - image.clientHeight)}px`;
+
+            move(); // Start moving
         }
 
-        // Move images every 100 milliseconds in random directions
-        function startFloating() {
-            setInterval(() => {
-                images.forEach(moveImageRandomly);
-            }, 100); // Update position every 100ms
-        }
-
-        function moveSquare() {
-            const maxX = gameContainer.clientWidth - square.clientWidth;
-            const maxY = gameContainer.clientHeight - square.clientHeight;
-            const randomX = Math.floor(Math.random() * maxX);
-            const randomY = Math.floor(Math.random() * maxY);
-            square.style.left = `${randomX}px`;
-            square.style.top = `${randomY}px`;
-        }
-
-        function startGame() {
-            score = 0;
-            scoreDisplay.textContent = "Score: 0";
-            square.addEventListener("click", increaseScore);
-            gameInterval = setInterval(moveSquare, 500);
-            setTimeout(() => {
-                clearInterval(gameInterval);
-                square.removeEventListener("click", increaseScore);
-                finalScore.textContent = "Your score: " + score;
-                modal.style.display = "block";
-            }, gameDuration);
-        }
-
-        function increaseScore() {
-            score++;
-            scoreDisplay.textContent = "Score: " + score;
-        }
-
-        function closeModal() {
-            modal.style.display = "none";
-        }
-
-        startButton.addEventListener("click", startGame);
-        startFloating(); // Start the random floating movement of images
+        document.querySelectorAll(".floating-images img").forEach(moveImageSmoothly);
     </script>
 </body>
 </html>
