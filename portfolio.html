@@ -112,8 +112,8 @@
     <div class="floating-images">
         <img src="assets/img/001.png" id="image1">
         <img src="assets/img/002.png" id="image2">
-        <img src="assets/img/003.png" id="image3">
-        <img src="assets/img/007.png" id="image4">
+        <img src="assets/img/001.png" id="image3">
+        <img src="assets/img/002.png" id="image4">
     </div>
     
     <h1>Catch the Square</h1>
@@ -132,7 +132,7 @@
     <script>
         function moveImageVertically(image, startX) {
             let yPos = -200; // Start above the screen
-            image.style.left = `${startX}px`;
+            image.style.left = `${startX - window.innerWidth * 0.05}px`; // Shift left slightly
             image.style.top = `${yPos}px`;
 
             function animate() {
@@ -148,13 +148,13 @@
             animate();
         }
 
-        // Move first two images on the left side (10% and 30% of the screen width)
-        moveImageVertically(document.getElementById("image1"), window.innerWidth * 0.1);
-        moveImageVertically(document.getElementById("image2"), window.innerWidth * 0.3);
+        // Move first two images on the left side
+        moveImageVertically(document.getElementById("image1"), window.innerWidth * 0.05);
+        moveImageVertically(document.getElementById("image2"), window.innerWidth * 0.25);
 
-        // Move last two images on the right side (70% and 90% of the screen width)
-        moveImageVertically(document.getElementById("image3"), window.innerWidth * 0.7);
-        moveImageVertically(document.getElementById("image4"), window.innerWidth * 0.9);
+        // Move last two images on the right side
+        moveImageVertically(document.getElementById("image3"), window.innerWidth * 0.65);
+        moveImageVertically(document.getElementById("image4"), window.innerWidth * 0.85);
 
         const square = document.getElementById("square");
         const gameContainer = document.getElementById("gameContainer");
