@@ -26,6 +26,8 @@
       transition: transform 0.3s ease; /* Smooth transition when scaling */
     }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
   </head>
 
   <body oncontextmenu="return false">
@@ -405,21 +407,24 @@
   </div>
   <script src="https://smtpjs.com/v3/smtp.js"></script>
   <script>
-    function sendEmail(){
-      Email.send({
-    Host : "smtp.gmail.com",
-    Username : "",
-    Password : "",
-    To : 'ykarlosh@gmail.com',
-    From : document.getElementById("email").value,
-    Subject : "Enwuiry from portfolio",
-    Body : "Name: " + document.getElementById("name").value
-          + "<br> Email: " + document.getElementById("email").value
-          + "<br> Message: " +  document.getElementById("message").value
-}).then(
-  message => alert("Message sent Sucessfully")
-);   
-    }
+    function sendEmail() {
+    emailjs.init("YOUR_USER_ID"); // Replace with your EmailJS User ID
+
+    var params = {
+        from_name: document.getElementById("name").value,
+        from_email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+    };
+
+    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
+    .then(function(response) {
+        alert("Message sent successfully!");
+        document.getElementById("contact-form").reset(); // Clears the form after sending
+    }, function(error) {
+        alert("Failed to send message. Please try again later.");
+    });
+}
+
     </script>
 </section>
 
