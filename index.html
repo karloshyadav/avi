@@ -362,7 +362,7 @@
       </div>
     </div>
 
-    <form class="contact__form grid">
+    <form class="contact__form grid" onsubmit="sendEmail()">
       <div class="contact__inputs grid">
         <div class="contact__content">
           <label for="name" class="content__label">Name</label>
@@ -389,6 +389,22 @@
       </div>
     </form>
   </div>
+  <script src="https://smtpjs.com/v3/smtp.js"></script>
+  <script>
+    function sendEmail(){
+      Email.send({
+    Host : "smtp.mailendo.com",
+    Username : "username",
+    Password : "password",
+    To : 'them@website.com',
+    From : "you@isp.com",
+    Subject : "This is the subject",
+    Body : "And this is the body"
+}).then(
+  message => alert(message)
+);   
+    }
+    </script>
 </section>
 
     </main>
