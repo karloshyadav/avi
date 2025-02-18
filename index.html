@@ -363,7 +363,7 @@
         <div>
           <h3 class="contact__title">Email</h3>
           <span class="contact__subtitle">
-            <a href="mailto:ykarlosh@gmail.com">abhinashydv77@gmail.com</a>
+            <a href="mailto:abhinashydv77@gmail.com">abhinashydv77@gmail.com</a>
           </span>
         </div>
       </div>
@@ -378,36 +378,38 @@
     </div>
 
     <form id="contact-form">
-    <input type="text" id="name" placeholder="Your Name" required>
-    <input type="email" id="email" placeholder="Your Email" required>
-    <textarea id="message" placeholder="Your Message" required></textarea>
-    <button type="button" onclick="sendEmail()">Send Message</button>
-</form>
-
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="button" onclick="sendEmail()">Send Message</button>
+    </form>
   </div>
+
+  <!-- Include EmailJS Library -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
   <script>
     function sendEmail() {
-    emailjs.init("tagwryv93d4ynNSNw"); // Replace with your EmailJS User ID
+        emailjs.init("tagwryv93d4ynNSNw"); // Your EmailJS User ID
 
-    var params = {
-        from_name: document.getElementById("name").value,
-        from_email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-    };
+        var params = {
+            from_name: document.getElementById("name").value,
+            from_email: document.getElementById("email").value,
+            message: document.getElementById("message").value
+        };
 
-    emailjs.send("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", params)
-    .then(function(response) {
-        alert("Message sent successfully!");
-        document.getElementById("contact-form").reset(); // Clears the form after sending
-    }, function(error) {
-        alert("Failed to send message. Please try again later.");
-    });
-}
-
-    </script>
+        emailjs.send("service_qxyz123", "template_abc456", params) // Replace with your actual Service ID & Template ID
+        .then(function(response) {
+            alert("Message sent successfully!");
+            document.getElementById("contact-form").reset(); // Clears the form after sending
+        }, function(error) {
+            alert("Failed to send message. Please try again later.");
+            console.error("EmailJS Error:", error); // Log error to console for debugging
+        });
+    }
+  </script>
 </section>
+
 
     </main>
 
