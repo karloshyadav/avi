@@ -78,6 +78,25 @@
     }
     .button:hover { background: #005bcc; }
     .home__social a { margin: 0 0.5rem; font-size: 1.4rem; color: #0077ff; }
+
+    /* Desktop Styles */
+    @media (min-width: 768px) {
+      .nav__menu {
+        display: block !important;
+        position: static;
+        background: none;
+        padding: 0;
+        box-shadow: none;
+      }
+      .nav__list {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .nav__close,
+      .nav__toggle {
+        display: none; /* hide toggle buttons on desktop */
+      }
+    }
   </style>
 </head>
 <body>
