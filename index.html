@@ -35,9 +35,16 @@
       color: var(--text-light);
     }
 
+    /* Generic Containers */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
     /* Section Titles */
     .section__title {
-      font-size: 2.5rem;
+      font-size: 2.2rem;
       text-align: center;
       margin-bottom: 1rem;
       background: linear-gradient(90deg, var(--primary), var(--accent));
@@ -49,45 +56,120 @@
     .section__subtitle {
       display: block;
       text-align: center;
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--text-muted);
-      margin-bottom: 3rem;
+      margin-bottom: 2.5rem;
+    }
+
+    /* HEADER */
+    .header {
+      position: fixed;
+      width: 100%;
+      top: 0; left: 0;
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+      transition: 0.4s;
+    }
+    .header.scrolled {
+      background: rgba(0,0,0,0.7);
+      color: #fff;
+    }
+
+    .nav.container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+    }
+
+    .nav__menu {
+      display: none;
+    }
+    .nav__list {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav__link {
+      text-decoration: none;
+      color: var(--text-dark);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav__link:hover {
+      color: var(--primary);
+    }
+
+    /* Mobile menu */
+    .nav__toggle, .nav__close {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    @media(max-width:768px){
+      .nav__menu {
+        display: block;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: 70%;
+        background: rgba(0,0,0,0.9);
+        padding: 2rem;
+        transform: translateX(100%);
+        transition: transform 0.3s;
+      }
+      .nav__menu.active {
+        transform: translateX(0);
+      }
+      .nav__list {
+        flex-direction: column;
+        gap: 1rem;
+      }
+      .nav__link {
+        color: var(--text-light);
+      }
+      .nav__toggle {
+        display: inline-block;
+      }
+      .nav__close {
+        display: inline-block;
+        color: #fff;
+        position: absolute;
+        top: 1rem; right: 1rem;
+      }
     }
 
     /* Hero Section */
-    .home__title {
-      font-size: 2.8rem;
-      color: var(--text-light);
-      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
+    .home {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 6rem 1rem 2rem;
+      text-align: center;
     }
-    .home__subtitle {
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--accent);
-    }
-    .home__description {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
+    .home__title { font-size: 2.5rem; }
+    .home__subtitle { font-size: 1.2rem; color: var(--accent); }
+    .home__description { font-size: 1rem; color: var(--text-muted); }
 
     /* Social */
-    .home__social {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
+    .home__social { display: flex; gap: 15px; justify-content: center; margin-top: 1rem; }
     .home__social-icon .home__icon {
-      font-size: 2rem;
-      padding: 10px;
+      font-size: 1.8rem;
+      padding: 8px;
       border-radius: 50%;
       background: var(--glass);
-      backdrop-filter: blur(10px);
-      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
       color: var(--text-light);
+      transition: 0.3s;
     }
     .home__social-icon .home__icon:hover {
-      transform: scale(1.3) rotate(10deg);
+      transform: scale(1.2);
       color: var(--accent);
       background: rgba(255,255,255,0.15);
     }
@@ -95,7 +177,7 @@
     /* Buttons */
     .button {
       background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff !important;  
+      color: #fff;  
       border: none;
       padding: 0.9rem 1.5rem;
       border-radius: 12px;
@@ -105,787 +187,188 @@
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-top: 1.5rem;
+      transition: 0.3s;
     }
     .button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 12px rgba(0,212,255,0.5);
-    }
-    .button__icon {
-      font-size: 1.2rem;
-      color: #fff;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
-    /* Services */
+    /* Responsive images */
+    img { max-width: 100%; height: auto; border-radius: 12px; }
+
+    /* Services grid */
     .services__container {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding: 2rem 0;
     }
     .services__content {
       background: var(--glass);
-      padding: 2rem;
-      border-radius: 1.5rem;
+      padding: 1.5rem;
+      border-radius: 1rem;
       text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text-light);
-    }
-    .services__content:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
-    .services__icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-      transition: transform 0.3s ease;
-    }
-    .services__content:hover .services__icon {
-      transform: rotate(8deg) scale(1.2);
     }
 
     /* Contact */
-    .contact__form {
-      background: var(--glass);
-      padding: 2rem;
-      border-radius: 1rem;
-      backdrop-filter: blur(15px);
-      border: 1px solid rgba(255,255,255,0.1);
-      max-width: 600px;
-      margin: auto;
+    .contact__container {
+      display: grid;
+      gap: 2rem;
     }
-    .contact__input,
-    .contact__textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1.2rem;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
-      color: var(--text-light);
-      font-size: 1rem;
-    }
-    .contact__input::placeholder,
-    .contact__textarea::placeholder {
-      color: var(--text-muted);
-    }
-    .form__status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: var(--accent);
-      text-align: center;
+    @media(min-width:768px){
+      .contact__container { grid-template-columns: 1fr 1fr; }
     }
 
-    /* Animations */
-    @keyframes fadeUp {
-      from {opacity:0; transform: translateY(30px);}
-      to {opacity:1; transform: translateY(0);}
+    .footer {
+      background: #0d1117;
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--text-light);
     }
+    .footer__socials { display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; }
+    .footer__social { color: #fff; font-size: 1.5rem; transition: 0.3s; }
+    .footer__social:hover { color: var(--accent); }
   </style>
 </head>
-<body oncontextmenu="return false">
+<body>
+
 <!-- ======================= HEADER ======================= -->
 <header class="header" id="header">
   <nav class="nav container">
-    <!-- Logo -->
     <a href="#" class="nav__logo">Avinash Yadav</a>
 
-    <!-- Navigation Menu -->
     <div class="nav__menu" id="nav-menu">
-      <ul class="nav__list grid">
-        <li class="nav__item"><a href="#home" class="nav__link active-link"><i class="uil uil-estate nav__icon"></i> Home</a></li>
-        <li class="nav__item"><a href="#about" class="nav__link"><i class="uil uil-user nav__icon"></i> About</a></li>
-        <li class="nav__item"><a href="./photos.html" class="nav__link"><i class="uil uil-image nav__icon"></i> Photos</a></li>
-        <li class="nav__item"><a href="#qualification" class="nav__link"><i class="uil uil-briefcase-alt nav__icon"></i> Qualification</a></li>
-        <li class="nav__item"><a href="./portfolio.html" class="nav__link"><i class="uil uil-scenery nav__icon"></i> Play with me</a></li>
-        <li class="nav__item"><a href="#contact" class="nav__link"><i class="uil uil-message nav__icon"></i> Contact</a></li>
+      <ul class="nav__list">
+        <li><a href="#home" class="nav__link">Home</a></li>
+        <li><a href="#about" class="nav__link">About</a></li>
+        <li><a href="#services" class="nav__link">Services</a></li>
+        <li><a href="#qualification" class="nav__link">Qualification</a></li>
+        <li><a href="#contact" class="nav__link">Contact</a></li>
       </ul>
-
-      <!-- Close Button -->
-      <i class="uil uil-times nav__close" id="nav-close"></i>
+      <button class="nav__close" id="nav-close"><i class="uil uil-times"></i></button>
     </div>
 
-    <!-- Navigation Buttons -->
-    <div class="nav__btns">
-      <!-- Dark/Light Theme Button -->
-      <button class="theme-toggle" id="theme-button" aria-label="Toggle theme">
-        <i class="uil uil-moon change-theme"></i>
-      </button>
-
-      <!-- Mobile Menu Toggle -->
-      <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
-        <i class="uil uil-apps"></i>
-      </button>
-    </div>
+    <button class="nav__toggle" id="nav-toggle"><i class="uil uil-apps"></i></button>
   </nav>
 </header>
 
-<!-- ======================= HERO SECTION ======================= -->
+<!-- ======================= HERO ======================= -->
 <section class="home section" id="home">
-  <div class="home__container container grid">
-    <div class="home__content grid">
-      
-      <!-- Social Links -->
-      <div class="home__social">
-        <a href="https://www.facebook.com/abnish.yadav.73" target="_blank" class="home__social-icon" aria-label="Facebook">
-          <i class="uil uil-facebook-f home__icon"></i>
-        </a>
-        <a href="https://www.instagram.com/avi_avi0727/" target="_blank" class="home__social-icon" aria-label="Instagram">
-          <i class="uil uil-instagram home__icon"></i>
-        </a>
-      </div>
+  <div class="home__data">
+    <h1 class="home__title">Hi, I'm Dr. Avinash Yadav</h1>
+    <h3 class="home__subtitle">Bachelor of Dental Surgery</h3>
+    <p class="home__description">BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.</p>
 
-      <!-- Hero Image with Floating Blob -->
-      <div class="home__img">
-        <svg class="home__blob" viewBox="0 0 200 187" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="blobGradient" gradientTransform="rotate(45)">
-              <stop offset="0%" stop-color="#007bff"/>
-              <stop offset="100%" stop-color="#6f42c1"/>
-            </linearGradient>
-          </defs>
-          <mask id="mask0" mask-type="alpha">
-            <path d="M190.312 36.4879C206.582...Z"/>
-          </mask>
-          <g mask="url(#mask0)">
-            <path d="M190.312 36.4879C206.582...Z" fill="url(#blobGradient)">
-              <animate attributeName="d" dur="10s" repeatCount="indefinite"
-                values="
-                  M190.312 36.4879C206.582...Z;
-                  M180.123 50.489C200.123...Z;
-                  M190.312 36.4879C206.582...Z" />
-            </path>
-            <image class="home__blob-img" x="-79" y="-46" href="assets/img/006.png" alt="Profile image"/>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Intro Text -->
-      <div class="home__data">
-        <h1 class="home__title">Hi, I'm Dr. Avinash Yadav</h1>
-        <h3 class="home__subtitle">Bachelor of Dental Surgery</h3>
-        <p class="home__description">BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.</p>
-        <a href="#contact" class="button button--flex">
-          Contact me <i class="uil uil-message button__icon"></i>
-        </a>
-      </div>
-    </div>
-
-    <!-- Scroll Down -->
-    <div class="home__scroll">
-      <a href="#about" class="home__scroll-button button--flex">
-        <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-        <span class="home__scroll-name">Scroll down</span>
-        <i class="uil uil-arrow-down home__scroll-arrow"></i>
+    <div class="home__social">
+      <a href="https://www.facebook.com/abnish.yadav.73" target="_blank" class="home__social-icon" aria-label="Facebook">
+        <i class="uil uil-facebook-f home__icon"></i>
+      </a>
+      <a href="https://www.instagram.com/avi_avi0727/" target="_blank" class="home__social-icon" aria-label="Instagram">
+        <i class="uil uil-instagram home__icon"></i>
       </a>
     </div>
+
+    <a href="#contact" class="button">Contact me <i class="uil uil-message"></i></a>
   </div>
 </section>
 
-<!-- ======================= STYLES ======================= -->
-<style>
-/* Sticky Header with Blur */
-.header {
-  position: fixed;
-  width: 100%;
-  top: 0; left: 0;
-  background: rgba(255,255,255,0.7);
-  backdrop-filter: blur(10px);
-  z-index: 100;
-  transition: 0.4s;
-}
-.header.scrolled {
-  background: rgba(0,0,0,0.7);
-  color: #fff;
-}
-
-/* Social Icons */
-.home__social { display: flex; gap: 20px; }
-.home__social-icon .home__icon {
-  font-size: 2rem;
-  transform: scale(1.2);
-  transition: 0.3s;
-}
-.home__social-icon .home__icon:hover {
-  transform: scale(1.4) rotate(8deg);
-  color: #007bff;
-}
-
-/* Hero Blob */
-.home__blob { width: 300px; animation: float 6s ease-in-out infinite; }
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
-}
-
-/* Fade-in Animation */
-.home__data, .home__social, .home__scroll {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-.reveal { opacity: 1; transform: translateY(0); }
-</style>
-
-<!-- ======================= JS ======================= -->
-<script>
-/* Header Scroll Effect */
-window.addEventListener("scroll", () => {
-  document.getElementById("header").classList.toggle("scrolled", window.scrollY > 50);
-});
-
-/* Scroll Reveal */
-const revealElements = document.querySelectorAll(".home__data, .home__social, .home__scroll");
-const revealOnScroll = () => {
-  revealElements.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100) el.classList.add("reveal");
-  });
-};
-window.addEventListener("scroll", revealOnScroll);
-window.addEventListener("load", revealOnScroll);
-</script>
-
-  <!-- ABOUT -->
-  <section class="about section" id="about">
-    <h2 class="section__title">About Me</h2>
-    <span class="section__subtitle">My introduction</span>
-
-    <div class="about__container container grid">
-      <img src="assets/img/009.jpg" alt="Portrait of Dr. Avinash Yadav" class="about__img" />
-
-      <div class="about__data">
-        <p class="about__description">
-          I am seeking a dynamic opportunity to provide exceptional dental care and enhance patient experiences through innovative treatment techniques.
-        </p>
-        <p class="about__extra">
-          With extensive experience in general and cosmetic dentistry, I focus on enhancing patient health and satisfaction. Skilled in both routine and complex treatments, I prioritize comfort and care.
-        </p>
-        <ul class="about__list">
-          <li><i class="fa-solid fa-check"></i> Expert in diagnostics & restorative practices.</li>
-          <li><i class="fa-solid fa-check"></i> Committed to compassionate care & outcomes.</li>
-        </ul>
-        <div class="about__buttons">
-          <a href="assets/img/avi.pdf" download class="button button--flex">
-            Download CV <i class="fa-solid fa-download button__icon"></i>
-          </a>
-        </div>
-      </div>
+<!-- ======================= ABOUT ======================= -->
+<section class="about section" id="about">
+  <h2 class="section__title">About Me</h2>
+  <span class="section__subtitle">My introduction</span>
+  <div class="about__container container grid">
+    <img src="assets/img/009.jpg" alt="Portrait of Dr. Avinash Yadav" />
+    <div>
+      <p>I am seeking a dynamic opportunity to provide exceptional dental care and enhance patient experiences through innovative treatment techniques.</p>
+      <p>With experience in general and cosmetic dentistry, I focus on enhancing patient health and satisfaction.</p>
+      <a href="assets/img/avi.pdf" download class="button">Download CV <i class="fa-solid fa-download"></i></a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- SERVICES -->
-  <section class="services section" id="services">
-    <h2 class="section__title">Services</h2>
-    <span class="section__subtitle">Transforming smiles with care & innovation</span>
+<!-- ======================= SERVICES ======================= -->
+<section class="services section" id="services">
+  <h2 class="section__title">Services</h2>
+  <span class="section__subtitle">Transforming smiles with care & innovation</span>
+  <div class="services__container container">
+    <div class="services__content"><i class="fas fa-tooth"></i><h3>General Dentistry</h3><p>Check-ups, cleanings & cavity care.</p></div>
+    <div class="services__content"><i class="fas fa-smile"></i><h3>Cosmetic Dentistry</h3><p>Whitening, veneers & bonding.</p></div>
+    <div class="services__content"><i class="fas fa-tools"></i><h3>Restorative Dentistry</h3><p>Crowns, fillings & bridges.</p></div>
+    <div class="services__content"><i class="fas fa-child"></i><h3>Pediatric Dentistry</h3><p>Gentle care for children.</p></div>
+    <div class="services__content"><i class="fas fa-ambulance"></i><h3>Emergency Care</h3><p>Quick relief for urgent injuries.</p></div>
+  </div>
+</section>
 
-    <div class="services__container container grid">
-      <div class="services__content">
-        <i class="fas fa-tooth services__icon"></i>
-        <h3 class="services__title">General Dentistry</h3>
-        <p class="services__description">Check-ups, cleanings & cavity care to maintain oral health.</p>
-      </div>
-      <div class="services__content">
-        <i class="fas fa-smile services__icon"></i>
-        <h3 class="services__title">Cosmetic Dentistry</h3>
-        <p class="services__description">Whitening, veneers & bonding for a beautiful smile.</p>
-      </div>
-      <div class="services__content">
-        <i class="fas fa-tools services__icon"></i>
-        <h3 class="services__title">Restorative Dentistry</h3>
-        <p class="services__description">Crowns, fillings & bridges with natural aesthetics.</p>
-      </div>
-      <div class="services__content">
-        <i class="fas fa-child services__icon"></i>
-        <h3 class="services__title">Pediatric Dentistry</h3>
-        <p class="services__description">Gentle care for children fostering lifelong oral health.</p>
-      </div>
-      <div class="services__content">
-        <i class="fas fa-ambulance services__icon"></i>
-        <h3 class="services__title">Emergency Care</h3>
-        <p class="services__description">Quick relief for broken teeth, pain & urgent injuries.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Scroll Animations -->
-  <script>
-    const sections = document.querySelectorAll("section");
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("show");
-      });
-    }, {threshold: 0.2});
-
-    sections.forEach(sec => {
-      sec.classList.add("hidden");
-      observer.observe(sec);
-    });
-  </script>
-</body>
-
-
-
-
-<section class="qualification__section service__section" id="qualification">
+<!-- ======================= QUALIFICATION ======================= -->
+<section class="qualification__section" id="qualification">
   <h2 class="section__title">Qualification</h2>
   <span class="section__subtitle">My personal journey</span>
-
   <div class="qualification__container container">
-    <div class="qualification__timeline">
-
-      <!-- Qualification 1 -->
-      <div class="qualification__item">
-        <div class="qualification__content">
-          <h3 class="qualification__title">Upto Class 3</h3>
-          <span class="qualification__subtitle">Nightingale Academy, Banepa, Kavre</span>
-          <div class="qualification__calendar">
-            <i class="uil uil-calendar-alt"></i> Year not specified
-          </div>
-        </div>
-      </div>
-
-      <!-- Qualification 2 -->
-      <div class="qualification__item">
-        <div class="qualification__content">
-          <h3 class="qualification__title">Upto Class 5</h3>
-          <span class="qualification__subtitle">Eastern Jyoti English School, Bhardaha, Saptari</span>
-          <div class="qualification__calendar">
-            <i class="uil uil-calendar-alt"></i> Year not specified
-          </div>
-        </div>
-      </div>
-
-      <!-- Qualification 3 -->
-      <div class="qualification__item">
-        <div class="qualification__content">
-          <h3 class="qualification__title">Upto Class 10</h3>
-          <span class="qualification__subtitle">Mother Teresa Secondary School, Biratnagar, Morang</span>
-          <div class="qualification__calendar">
-            <i class="uil uil-calendar-alt"></i> Year not specified
-          </div>
-        </div>
-      </div>
-
-      <!-- Qualification 4 -->
-      <div class="qualification__item">
-        <div class="qualification__content">
-          <h3 class="qualification__title">Upto Class 12 (10+2)</h3>
-          <span class="qualification__subtitle">Arniko Awashiya Higher Secondary School, Biratnagar, Morang</span>
-          <div class="qualification__calendar">
-            <i class="uil uil-calendar-alt"></i> Year not specified
-          </div>
-        </div>
-      </div>
-
-      <!-- Qualification 5 -->
-      <div class="qualification__item">
-        <div class="qualification__content">
-          <h3 class="qualification__title">BDS Graduated</h3>
-          <span class="qualification__subtitle">B.P. Koirala Institute of Health Science, Dharan</span>
-          <div class="qualification__calendar">
-            <i class="uil uil-calendar-alt"></i> 2017 - 2024
-          </div>
-        </div>
-      </div>
-
-    </div>
+    <ul>
+      <li><strong>Upto Class 3</strong> - Nightingale Academy, Banepa</li>
+      <li><strong>Upto Class 5</strong> - Eastern Jyoti English School, Bhardaha</li>
+      <li><strong>Upto Class 10</strong> - Mother Teresa Secondary School, Biratnagar</li>
+      <li><strong>10+2</strong> - Arniko Awashiya HSS, Biratnagar</li>
+      <li><strong>BDS Graduate</strong> - B.P. Koirala Institute of Health Science (2017-2024)</li>
+    </ul>
   </div>
 </section>
 
-<style>
-/* Section styling */
-.qualification__section {
-  padding: 5rem 1rem;
-  background: linear-gradient(135deg, #f9fafc, #eef3ff);
-  text-align: center;
-}
-
-.section__title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: #222;
-}
-
-.section__subtitle {
-  font-size: 1.1rem;
-  color: #666;
-  margin-bottom: 4rem;
-  display: block;
-}
-
-/* Timeline container */
-.qualification__timeline {
-  position: relative;
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 0;
-}
-
-.qualification__timeline::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 50%;
-  width: 6px;
-  height: 0%;
-  background: linear-gradient(to bottom, #0077ff, #00d4ff);
-  transform: translateX(-50%);
-  border-radius: 4px;
-  transition: height 0.8s ease-out;
-}
-
-/* Timeline item */
-.qualification__item {
-  position: relative;
-  width: 50%;
-  padding: 2rem 2.5rem;
-  box-sizing: border-box;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
-}
-
-.qualification__item:nth-child(odd) {
-  left: 0;
-  text-align: right;
-}
-
-.qualification__item:nth-child(even) {
-  left: 50%;
-  text-align: left;
-}
-
-/* Dot marker */
-.qualification__item::before {
-  content: "";
-  position: absolute;
-  top: 30px;
-  width: 22px;
-  height: 22px;
-  background: #fff;
-  border: 4px solid #0077ff;
-  border-radius: 50%;
-  box-shadow: 0 0 15px rgba(0, 119, 255, 0.6);
-  z-index: 1;
-  transition: 0.3s;
-}
-
-.qualification__item:nth-child(odd)::before {
-  right: -11px;
-}
-
-.qualification__item:nth-child(even)::before {
-  left: -11px;
-}
-
-/* Card styling */
-.qualification__content {
-  background: #fff;
-  padding: 1.8rem;
-  border-radius: 14px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
-  display: inline-block;
-  max-width: 90%;
-  transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.qualification__content:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 30px rgba(0, 119, 255, 0.3);
-}
-
-.qualification__title {
-  font-size: 1.3rem;
-  font-weight: 600;
-  color: #111;
-}
-
-.qualification__subtitle {
-  font-size: 1rem;
-  color: #555;
-  display: block;
-  margin: 0.4rem 0 0.8rem;
-}
-
-.qualification__calendar {
-  font-size: 0.9rem;
-  color: #888;
-}
-
-/* Active animation */
-.qualification__item.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .qualification__timeline::before {
-    left: 10px;
-  }
-
-  .qualification__item {
-    width: 100%;
-    text-align: left !important;
-    padding-left: 3rem;
-    margin-bottom: 2rem;
-  }
-
-  .qualification__item::before {
-    left: 0;
-  }
-}
-</style>
-
-<script>
-// Scroll-triggered animation
-document.addEventListener("scroll", () => {
-  const items = document.querySelectorAll(".qualification__item");
-  const timeline = document.querySelector(".qualification__timeline::before");
-
-  let scrollPos = window.scrollY + window.innerHeight;
-
-  items.forEach((item, index) => {
-    if (item.offsetTop < scrollPos - 100) {
-      item.classList.add("active");
-    }
-  });
-
-  // Grow the timeline line
-  const timelineLine = document.querySelector(".qualification__timeline::before");
-  const container = document.querySelector(".qualification__timeline");
-  if (container) {
-    let progress = Math.min(
-      100,
-      ((scrollPos - container.offsetTop) / container.offsetHeight) * 100
-    );
-    container.style.setProperty("--line-progress", progress + "%");
-  }
-});
-</script>
-
-
-
-<!--======================= Contact =======================-->
+<!-- ======================= CONTACT ======================= -->
 <section class="contact section" id="contact">
   <h2 class="section__title">Contact Me</h2>
   <span class="section__subtitle">Let’s build something amazing together</span>
-
-  <div class="contact__container container grid">
-    <!-- Contact Info -->
-    <div class="contact__info">
-      <div class="contact__information">
-        <i class="uil uil-calling contact__icon"></i>
-        <div>
-          <h3 class="contact__title">Phone</h3>
-          <a href="tel:+9779808898885" class="contact__subtitle">(+977) 9808898885</a>
-        </div>
-      </div>
-
-      <div class="contact__information">
-        <i class="uil uil-envelope contact__icon"></i>
-        <div>
-          <h3 class="contact__title">Email</h3>
-          <a href="mailto:abhinashydv77@gmail.com" class="contact__subtitle">abhinashydv77@gmail.com</a>
-        </div>
-      </div>
-
-      <div class="contact__information">
-        <i class="uil uil-map-marker contact__icon"></i>
-        <div>
-          <h3 class="contact__title">Location</h3>
-          <span class="contact__subtitle">Bhardaha, Saptari, Nepal</span>
-        </div>
-      </div>
+  <div class="contact__container container">
+    <div>
+      <p><i class="uil uil-calling"></i> <a href="tel:+9779808898885">(+977) 9808898885</a></p>
+      <p><i class="uil uil-envelope"></i> <a href="mailto:abhinashydv77@gmail.com">abhinashydv77@gmail.com</a></p>
+      <p><i class="uil uil-map-marker"></i> Bhardaha, Saptari, Nepal</p>
     </div>
-
-    <!-- Contact Form -->
-   <!-- ================= CONTACT FORM ================= -->
-<form id="contact-form" class="contact__form glass-card">
-  <div class="form__group">
-    <input type="text" id="name" required class="contact__input">
-    <label for="name" class="form__label">Your Name</label>
-  </div>
-
-  <div class="form__group">
-    <input type="email" id="email" required class="contact__input">
-    <label for="email" class="form__label">Your Email</label>
-  </div>
-
-  <div class="form__group">
-    <textarea id="message" required class="contact__textarea"></textarea>
-    <label for="message" class="form__label">Your Message</label>
-  </div>
-
-  <button type="submit" class="button button--flex">
-    <span>Send Message</span>
-    <i class="uil uil-message button__icon"></i>
-  </button>
-
-  <p id="form-status" class="form__status"></p>
-</form>
-
-
-<!-- ================= CONTACT FORM STYLES ================= -->
-<style>
-/* Glass Card */
-.glass-card {
-  background: rgba(255, 255, 255, 0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 16px;
-  padding: 2rem;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-  max-width: 500px;
-  margin: auto;
-  transition: transform 0.3s ease;
-}
-.glass-card:hover {
-  transform: translateY(-6px);
-}
-
-/* Form Groups */
-.form__group {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-/* Inputs & Textarea */
-.contact__input,
-.contact__textarea {
-  width: 100%;
-  padding: 1rem;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.05);
-  color: #111;
-  font-size: 1rem;
-  outline: none;
-  transition: 0.3s;
-}
-.contact__textarea {
-  min-height: 120px;
-  resize: none;
-}
-
-/* Floating Labels */
-.form__label {
-  position: absolute;
-  left: 1rem;
-  top: 1rem;
-  color: #666;
-  font-size: 0.9rem;
-  pointer-events: none;
-  transition: 0.3s;
-}
-.contact__input:focus + .form__label,
-.contact__input:valid + .form__label,
-.contact__textarea:focus + .form__label,
-.contact__textarea:valid + .form__label {
-  top: -0.6rem;
-  left: 0.8rem;
-  font-size: 0.75rem;
-  padding: 0 0.3rem;
-  background: rgba(255,255,255,0.6);
-  border-radius: 4px;
-  color: #007bff;
-}
-
-/* Focus Glow */
-.contact__input:focus,
-.contact__textarea:focus {
-  border-color: #007bff;
-  box-shadow: 0 0 10px rgba(0,123,255,0.4);
-}
-
-/* Button */
-.button {
-  background: linear-gradient(135deg, #007bff, #6f42c1);
-  border: none;
-  padding: 0.9rem 1.5rem;
-  border-radius: 12px;
-  font-size: 1rem;
-  font-weight: 500;
-  color: #fff;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-.button:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-}
-.button::after {
-  content: "";
-  position: absolute;
-  top: 0; left: -100%;
-  width: 100%; height: 100%;
-  background: rgba(255,255,255,0.2);
-  transition: 0.4s;
-}
-.button:hover::after {
-  left: 100%;
-}
-
-/* Form Status */
-.form__status {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #28a745;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-.form__status.show {
-  opacity: 1;
-}
-</style>
-
-
-<!-- ================= CONTACT FORM JS ================= -->
-<script>
-document.getElementById("contact-form").addEventListener("submit", function(e) {
-  e.preventDefault();
-  const status = document.getElementById("form-status");
-
-  // Fake submission simulation
-  status.textContent = "Sending...";
-  status.style.color = "#007bff";
-  status.classList.add("show");
-
-  setTimeout(() => {
-    status.textContent = "✅ Message sent successfully!";
-    status.style.color = "#28a745";
-  }, 1500);
-});
-</script>
-
+    <form id="contact-form">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="email" id="email" placeholder="Your Email" required>
+      <textarea id="message" placeholder="Your Message" required></textarea>
+      <button type="submit" class="button">Send <i class="uil uil-message"></i></button>
+      <p id="form-status"></p>
+    </form>
   </div>
 </section>
 
-<!--======================= Footer =======================-->
+<!-- ======================= FOOTER ======================= -->
 <footer class="footer">
-  <div class="footer__bg">
-    <div class="footer__container container grid">
-      <div>
-        <h1 class="footer__title">Avinash Yadav</h1>
-        <span class="footer__subtitle">Bachelor of Dental Surgery Graduate</span>
-      </div>
+  <div>
+    <h1 class="footer__title">Avinash Yadav</h1>
+    <span class="footer__subtitle">Bachelor of Dental Surgery Graduate</span>
+    <div class="footer__socials">
+      <a href="https://www.instagram.com/venkateeshh/" class="footer__social" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      <a href="https://twitter.com/Venkateeshhh" class="footer__social" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+    </div>
+    <p class="footer__copy">&#169; 2025 Avinash Yadav. All rights reserved.</p>
+  </div>
+</footer>
 
-      <ul class="footer__links">
-        <li><a href="#qualification" class="footer__link">Qualification</a></li>
-        <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
-        <li><a href="#contact" class="footer__link">Contact</a></li>
-      </ul>
+<script>
+// Sticky header
+window.addEventListener("scroll",()=>{
+  document.getElementById("header").classList.toggle("scrolled", window.scrollY>50);
+});
 
-      <div class="footer__socials">
-        <a href="https://www.instagram.com/venkateeshh/" class="footer__social" target="_blank">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://twitter.com/Venkateeshhh" class="footer__social" target="_bl_
+// Mobile nav
+const navMenu=document.getElementById("nav-menu"),navToggle=document.getElementById("nav-toggle"),navClose=document.getElementById("nav-close");
+navToggle.addEventListener("click",()=>navMenu.classList.add("active"));
+navClose.addEventListener("click",()=>navMenu.classList.remove("active"));
+
+// Contact form simulation
+const form=document.getElementById("contact-form");
+form.addEventListener("submit",e=>{
+  e.preventDefault();
+  const status=document.getElementById("form-status");
+  status.textContent="Sending...";
+  setTimeout(()=>{status.textContent="✅ Message sent successfully!";},1500);
+});
+</script>
+
+</body>
+</html>
