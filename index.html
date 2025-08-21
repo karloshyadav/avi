@@ -177,7 +177,7 @@ body {
       <!-- ======================= JS ======================= --> <script> /* Header Scroll Effect */ window.addEventListener("scroll", () => { document.getElementById("header").classList.toggle("scrolled", window.scrollY > 50); }); /* Scroll Reveal */ const revealElements = document.querySelectorAll(".home__data, .home__social, .home__scroll"); const revealOnScroll = () => { revealElements.forEach(el => { const rect = el.getBoundingClientRect(); if (rect.top < window.innerHeight - 100) el.classList.add("reveal"); }); }; window.addEventListener("scroll", revealOnScroll); window.addEventListener("load", revealOnScroll); </script> <!-- ABOUT --> 
       <section class="about section" id="about">
          <h2 class="section__title">About Me</h2>
-         <span class="section__subtitle">My introduction</span> 
+         <span class="section__subtitle"></span> 
          <div class="about__container container grid">
             <img src="assets/img/009.jpg" alt="Portrait of Dr. Avinash Yadav" class="about__img" /> 
             <div class="about__data">
