@@ -1,277 +1,104 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Meta -->
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <!-- Title -->
-  <title>Avinash | Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avinash Yadav Portfolio</title>
 
-  <!-- Stylesheets -->
-  <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
-  <link rel="stylesheet" href="assets/newcss.css" />
-  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
-  <!-- Custom Styles -->
   <style>
-    :root {
-      --primary: #007bff;
-      --accent: #00d4ff;
-      --dark-bg: #0d1117;
-      --light-bg: #ffffff;
-      --text-dark: #222;
-      --text-light: #f1f5f9;
-      --text-muted: #9ca3af;
-      --glass: rgba(255,255,255,0.08);
-    }
-
-    body {
-      font-family: "Poppins", sans-serif;
-      margin: 0;
-      background: linear-gradient(135deg, var(--dark-bg), #121826);
-      color: var(--text-light);
-      scroll-behavior: smooth;
-    }
-
-    /* Section Titles */
-    .section__title {
-      font-size: 2.5rem;
-      text-align: center;
-      margin-bottom: 1rem;
-      background: linear-gradient(90deg, var(--primary), var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 2px 12px rgba(0, 212, 255, 0.4);
-    }
-
-    .section__subtitle {
-      display: block;
-      text-align: center;
-      font-size: 1.1rem;
-      color: var(--text-muted);
-      margin-bottom: 3rem;
-    }
+    /* Basic Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; line-height: 1.6; color: #222; }
 
     /* Header */
     .header {
       position: fixed;
-      width: 100%;
-      top: 0;
-      left: 0;
-      background: rgba(255,255,255,0.7);
-      backdrop-filter: blur(10px);
-      z-index: 100;
-      transition: 0.4s;
+      top: 0; left: 0; right: 0;
+      background: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      z-index: 1000;
     }
-    .header.scrolled { background: rgba(0,0,0,0.7); color: #fff; }
+    .nav.container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem;
+      max-width: 1100px;
+      margin: auto;
+    }
+    .nav__logo { font-size: 1.2rem; font-weight: bold; text-decoration: none; color: #222; }
 
-    /* Nav */
+    /* Nav menu */
     .nav__menu {
       display: none;
+      position: absolute;
+      top: 60px;
+      right: 1rem;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
     }
-    .nav__menu.show-menu {
-      display: block;
-    }
-
-    /* Hero Section */
-    .home__title {
-      font-size: 2.8rem;
-      color: var(--text-light);
-      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
-    }
-    .home__subtitle {
-      font-size: 1.3rem;
-      font-weight: 500;
-      color: var(--accent);
-    }
-    .home__description {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* Social */
-    .home__social {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-    }
-    .home__social-icon .home__icon {
-      font-size: 2rem;
-      padding: 10px;
-      border-radius: 50%;
-      background: var(--glass);
-      transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
-      color: var(--text-light);
-    }
-    .home__social-icon .home__icon:hover {
-      transform: scale(1.3) rotate(10deg);
-      color: var(--accent);
-      background: rgba(255,255,255,0.15);
-    }
+    .nav__menu.show-menu { display: block; }
+    .nav__list { list-style: none; display: grid; gap: 0.75rem; }
+    .nav__link { text-decoration: none; color: #333; font-weight: 500; }
 
     /* Buttons */
+    .nav__btns button { background: none; border: none; cursor: pointer; font-size: 1.2rem; margin-left: 0.5rem; }
+    .nav__close { font-size: 1.4rem; background: none; border: none; cursor: pointer; }
+
+    /* Hero Section */
+    .home {
+      margin-top: 80px; /* push below header */
+      padding: 3rem 1rem;
+      text-align: center;
+    }
+    .home__img img {
+      border-radius: 50%;
+      max-width: 200px;
+      margin: 1rem auto;
+      display: block;
+    }
+    .home__title { font-size: 2rem; margin-bottom: 0.5rem; }
+    .home__subtitle { font-size: 1.2rem; margin-bottom: 1rem; color: #666; }
+    .home__description { max-width: 600px; margin: 0 auto 1.5rem; }
     .button {
-      background: linear-gradient(135deg, var(--primary), var(--accent));
-      color: #fff !important;
-      border: none;
-      padding: 0.9rem 1.5rem;
-      border-radius: 12px;
-      font-size: 1rem;
-      font-weight: 500;
-      cursor: pointer;
+      background: #0077ff;
+      color: #fff;
+      padding: 0.75rem 1.25rem;
+      border-radius: 6px;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      overflow: hidden;
+      transition: background 0.3s;
     }
-    .button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 12px rgba(0,212,255,0.5);
-    }
-    .button__icon {
-      font-size: 1.2rem;
-      color: #fff;
-    }
-
-    /* Services */
-    .services__container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-      gap: 2rem;
-    }
-    .services__content {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text-light);
-    }
-    .services__content:hover {
-      transform: translateY(-10px) scale(1.03);
-      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
-    }
-    .services__icon {
-      font-size: 3rem;
-      margin-bottom: 1rem;
-      color: var(--accent);
-      transition: transform 0.3s ease;
-    }
-    .services__content:hover .services__icon {
-      transform: rotate(8deg) scale(1.2);
-    }
-
-    /* Qualification Timeline */
-    .qualification__timeline {
-      position: relative;
-      padding-left: 40px;
-    }
-    .qualification__timeline::before {
-      content: "";
-      position: absolute;
-      left: 20px;
-      top: 0;
-      width: 4px;
-      height: var(--line-progress, 0%);
-      background: var(--accent);
-      transition: height 0.3s ease;
-    }
-    .qualification__item {
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.5s ease;
-    }
-    .qualification__item.active {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Contact */
-    .contact__form {
-      background: rgba(255, 255, 255, 0.08);
-      padding: 2rem;
-      border-radius: 1rem;
-      border: 1px solid rgba(255,255,255,0.1);
-      max-width: 600px;
-      margin: auto;
-    }
-    .contact__input, .contact__textarea {
-      width: 100%;
-      padding: 1rem;
-      margin-bottom: 1.2rem;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.08);
-      color: var(--text-light);
-      font-size: 1rem;
-    }
-    .contact__input::placeholder, .contact__textarea::placeholder {
-      color: var(--text-muted);
-    }
-    .form__status {
-      margin-top: 1rem;
-      font-size: 0.9rem;
-      color: var(--accent);
-      text-align: center;
-    }
-
-    /* Footer */
-    .footer {
-      background: #111;
-      padding: 2rem 0;
-      color: var(--text-light);
-      text-align: center;
-    }
-    .footer__links {
-      list-style: none;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-    }
-    .footer__socials a {
-      color: var(--accent);
-      margin: 0 0.5rem;
-      font-size: 1.5rem;
-      transition: 0.3s;
-    }
-    .footer__socials a:hover {
-      color: #fff;
-    }
+    .button:hover { background: #005bcc; }
+    .home__social a { margin: 0 0.5rem; font-size: 1.4rem; color: #0077ff; }
   </style>
 </head>
+<body>
 
-<body oncontextmenu="return false">
-
-  <!-- ======================= HEADER ======================= -->
+  <!-- HEADER -->
   <header class="header" id="header">
     <nav class="nav container">
-      <!-- Logo -->
-      <a href="#" class="nav__logo">Avinash Yadav</a>
+      <a href="#home" class="nav__logo">Avinash Yadav</a>
 
-      <!-- Navigation Menu -->
       <div class="nav__menu" id="nav-menu">
         <ul class="nav__list grid">
           <li><a href="#home" class="nav__link active-link"><i class="uil uil-estate"></i> Home</a></li>
           <li><a href="#about" class="nav__link"><i class="uil uil-user"></i> About</a></li>
-          <li><a href="./photos.html" class="nav__link"><i class="uil uil-image"></i> Photos</a></li>
           <li><a href="#qualification" class="nav__link"><i class="uil uil-briefcase-alt"></i> Qualification</a></li>
-          <li><a href="./portfolio.html" class="nav__link"><i class="uil uil-scenery"></i> Play with me</a></li>
           <li><a href="#contact" class="nav__link"><i class="uil uil-message"></i> Contact</a></li>
         </ul>
-        <!-- Close Button -->
-        <i class="uil uil-times nav__close" id="nav-close"></i>
+        <button class="nav__close" id="nav-close" aria-label="Close menu">
+          <i class="uil uil-times"></i>
+        </button>
       </div>
 
-      <!-- Navigation Buttons -->
       <div class="nav__btns">
         <button class="theme-toggle" id="theme-button" aria-label="Toggle theme">
           <i class="uil uil-moon change-theme"></i>
@@ -283,39 +110,33 @@
     </nav>
   </header>
 
-  <!-- ======================= HERO ======================= -->
+  <!-- HERO -->
   <section class="home section" id="home">
     <div class="home__container container grid">
       <div class="home__content grid">
-        <!-- Social -->
+
         <div class="home__social">
-          <a href="https://www.facebook.com/abnish.yadav.73" target="_blank" aria-label="Facebook" class="home__social-icon">
-            <i class="uil uil-facebook-f home__icon"></i>
-          </a>
-          <a href="https://www.instagram.com/avi_avi0727/" target="_blank" aria-label="Instagram" class="home__social-icon">
-            <i class="uil uil-instagram home__icon"></i>
-          </a>
+          <a href="https://www.facebook.com/abnish.yadav.73" target="_blank" aria-label="Facebook"><i class="uil uil-facebook-f"></i></a>
+          <a href="https://www.instagram.com/avi_avi0727/" target="_blank" aria-label="Instagram"><i class="uil uil-instagram"></i></a>
         </div>
 
-        <!-- Hero Img -->
         <div class="home__img">
-          <img src="assets/img/006.png" alt="Portrait of Dr. Avinash Yadav" width="250">
+          <img src="assets/img/006.png" alt="Portrait of Dr. Avinash Yadav" width="250" height="250">
         </div>
 
-        <!-- Text -->
         <div class="home__data">
-          <h1 class="home__title">Hi, I'm Dr. Avinash Yadav</h1>
-          <h3 class="home__subtitle">Bachelor of Dental Surgery</h3>
+          <h1 class="home__title">Hi, I'm <span>Dr. Avinash Yadav</span></h1>
+          <h2 class="home__subtitle">Bachelor of Dental Surgery</h2>
           <p class="home__description">
             BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.
           </p>
-          <a href="#contact" class="button button--flex">Contact me <i class="uil uil-message button__icon"></i></a>
+          <a href="#contact" class="button">Contact me <i class="uil uil-message button__icon"></i></a>
         </div>
+
       </div>
     </div>
   </section>
-
-  <!-- ======================= ABOUT ======================= -->
+<!-- ======================= ABOUT ======================= -->
   <section class="about section" id="about">
     <h2 class="section__title">About Me</h2>
     <span class="section__subtitle"></span>
@@ -394,8 +215,18 @@
     </div>
     <p class="footer__copy">&#169; Avinash Yadav. All rights reserved.</p>
   </footer>
-
-  <!-- ======================= JS ======================= -->
   <script>
-    // Header Scroll Effect
-    window
+    // Mobile menu toggle
+    const navMenu = document.getElementById("nav-menu"),
+          navToggle = document.getElementById("nav-toggle"),
+          navClose = document.getElementById("nav-close");
+
+    if(navToggle){
+      navToggle.addEventListener("click", () => navMenu.classList.add("show-menu"));
+    }
+    if(navClose){
+      navClose.addEventListener("click", () => navMenu.classList.remove("show-menu"));
+    }
+  </script>
+</body>
+</html>
