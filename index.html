@@ -12,101 +12,84 @@
   <style>
     /* ==== RESET ==== */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; line-height: 1.6; overflow-x: hidden; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; overflow-x: hidden; transition: all 0.4s ease; }
+    a { text-decoration: none; }
 
     /* ==== THEME COLORS ==== */
     body.light { --bg: #f8f9fa; --text: #222; --card: #fff; --accent: #0077ff; }
     body.dark { --bg: #0d1117; --text: #eaeaea; --card: #161b22; --accent: #58a6ff; }
-    body { background: var(--bg); color: var(--text); transition: all 0.4s ease; }
+    body { background: var(--bg); color: var(--text); }
 
     /* ==== HEADER ==== */
-    .header {
-      position: fixed; top: 0; left: 0; right: 0;
-      background: var(--card); backdrop-filter: blur(10px);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
-    .nav.container {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 1rem 2rem; max-width: 1200px; margin: auto;
-    }
-    .nav__logo { font-size: 1.3rem; font-weight: 700; text-decoration: none; color: var(--accent); }
-
-    /* ==== NAV MENU ==== */
-    .nav__menu { display: none; }
-    .nav__menu.show { display: block; position: absolute; top: 60px; right: 1rem; background: var(--card); padding: 1rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);}
-    .nav__list { list-style: none; display: grid; gap: 0.8rem; }
-    .nav__link { text-decoration: none; color: var(--text); font-weight: 500; transition: 0.3s; }
+    .header { position: fixed; top:0; left:0; right:0; background: var(--card); backdrop-filter: blur(10px); box-shadow:0 2px 10px rgba(0,0,0,0.2); z-index:1000; }
+    .nav.container { display:flex; justify-content:space-between; align-items:center; padding:1rem 2rem; max-width:1200px; margin:auto; }
+    .nav__logo { font-size:1.3rem; font-weight:700; color:var(--accent); }
+    .nav__menu { display:none; }
+    .nav__menu.show { display:block; position:absolute; top:60px; right:1rem; background:var(--card); padding:1rem; border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.2);}
+    .nav__list { list-style:none; display:grid; gap:0.8rem; }
+    .nav__link { color: var(--text); font-weight:500; transition:0.3s; }
     .nav__link:hover { color: var(--accent); }
-
-    .nav__btns button { background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--accent); margin-left: .5rem; }
-
-    @media(min-width:768px){
-      .nav__menu{display:block !important; position: static; background: none; box-shadow: none;}
-      .nav__list{display:flex; gap:2rem;}
-      .nav__toggle, .nav__close{display:none;}
-    }
+    .nav__btns button { background:none; border:none; cursor:pointer; font-size:1.4rem; color:var(--accent); margin-left:.5rem; }
+    .nav__toggle, .nav__close { cursor:pointer; }
+    @media(min-width:768px){ .nav__menu{display:block !important; position:static; background:none; box-shadow:none;} .nav__list{display:flex; gap:2rem;} .nav__toggle, .nav__close{display:none;} }
 
     /* ==== HERO ==== */
-    .home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem 1rem; position: relative; overflow: hidden; }
-    .home__img img { border-radius: 50%; width: 180px; border: 4px solid var(--accent); box-shadow: 0 0 20px rgba(0,0,0,0.3); }
-    .home__title { font-size: 2.2rem; margin: 1rem 0 .5rem; }
-    .home__title span { color: var(--accent); }
-    .home__subtitle { font-size: 1.2rem; color: gray; margin-bottom: 1rem; }
-    .home__description { max-width: 600px; margin: auto; }
-    .button { background: var(--accent); color: #fff; padding: .8rem 1.5rem; border-radius: 50px; display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; transition: 0.3s; }
-    .button:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .home { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; overflow:hidden; padding:2rem 1rem; }
+    #particle-canvas { position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; }
+    .home__content { position:relative; z-index:1; }
+    .home__img img { border-radius:50%; width:180px; border:4px solid var(--accent); box-shadow:0 0 20px rgba(0,0,0,0.3); }
+    .home__title { font-size:2.2rem; margin:1rem 0 .5rem; }
+    .home__title span { color:var(--accent); }
+    .home__subtitle { font-size:1.2rem; color:gray; margin-bottom:1rem; }
+    .home__description { max-width:600px; margin:auto; }
+    .button { background:var(--accent); color:#fff; padding:.8rem 1.5rem; border-radius:50px; display:inline-flex; align-items:center; gap:.5rem; transition:0.3s; }
+    .button:hover { transform:scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.2); }
 
     /* ==== SECTIONS ==== */
-    section { padding: 4rem 1rem; max-width: 1100px; margin: auto; }
-    .section__title { font-size: 2rem; text-align: center; margin-bottom: 1rem; color: var(--accent); }
-    .section__subtitle { text-align: center; margin-bottom: 2rem; color: gray; }
+    section { padding:4rem 1rem; max-width:1100px; margin:auto; }
+    .section__title { font-size:2rem; text-align:center; margin-bottom:1rem; color:var(--accent); }
+    .section__subtitle { text-align:center; margin-bottom:2rem; color:gray; }
 
     /* ==== ABOUT ==== */
-    .about__container { display: grid; gap: 2rem; align-items: center; }
-    .about__img { width: 250px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
-    .about__data ul { margin: 1rem 0; }
-    .about__data li { margin: .5rem 0; }
-
-    @media(min-width:768px){
-      .about__container { grid-template-columns: 1fr 1fr; }
-    }
+    .about__container { display:grid; gap:2rem; align-items:center; }
+    .about__img { width:250px; border-radius:20px; box-shadow:0 8px 20px rgba(0,0,0,0.2); }
+    .about__data ul { margin:1rem 0; }
+    .about__data li { margin:.5rem 0; }
+    @media(min-width:768px){ .about__container { grid-template-columns:1fr 1fr; } }
 
     /* ==== SERVICES ==== */
-    .services__container { display: grid; gap: 1.5rem; }
-    .services__content {
-      background: var(--card); padding: 2rem; border-radius: 16px; text-align: center;
-      transition: 0.4s; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    }
-    .services__content:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
-    .services__icon { font-size: 2rem; color: var(--accent); margin-bottom: .5rem; }
-    @media(min-width:768px){ .services__container{grid-template-columns: repeat(3,1fr);} }
+    .services__container { display:grid; gap:1.5rem; }
+    .services__content { background:var(--card); padding:2rem; border-radius:16px; text-align:center; transition:0.4s; box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+    .services__content:hover { transform:translateY(-5px) scale(1.02); box-shadow:0 8px 20px rgba(0,0,0,0.3);}
+    .services__icon { font-size:2rem; color:var(--accent); margin-bottom:.5rem; }
+    @media(min-width:768px){ .services__container{grid-template-columns:repeat(3,1fr);} }
 
     /* ==== QUALIFICATION ==== */
-    .qualification__timeline { border-left: 3px solid var(--accent); padding-left: 1rem; }
-    .qualification__item { margin-bottom: 1.5rem; position: relative; }
-    .qualification__item::before { content:""; position: absolute; left: -10px; top: 5px; width: 15px; height: 15px; background: var(--accent); border-radius: 50%; }
+    .qualification__timeline { border-left:3px solid var(--accent); padding-left:1rem; }
+    .qualification__item { margin-bottom:1.5rem; position:relative; }
+    .qualification__item::before { content:""; position:absolute; left:-10px; top:5px; width:15px; height:15px; background:var(--accent); border-radius:50%; }
 
     /* ==== CONTACT ==== */
-    .contact__form { display: grid; gap: 1rem; max-width: 600px; margin: auto; }
-    .contact__input, .contact__textarea { padding: .8rem; border-radius: 8px; border: 2px solid #ccc; font-size: 1rem; width: 100%; }
-    .contact__input:focus, .contact__textarea:focus { border-color: var(--accent); outline: none; }
+    .contact__form { display:grid; gap:1rem; max-width:600px; margin:auto; }
+    .contact__input, .contact__textarea { padding:.8rem; border-radius:8px; border:2px solid #ccc; font-size:1rem; width:100%; }
+    .contact__input:focus, .contact__textarea:focus { border-color:var(--accent); outline:none; }
 
     /* ==== FOOTER ==== */
-    .footer { text-align: center; padding: 2rem; background: var(--card); margin-top: 3rem; }
-    .footer__title { font-size: 1.5rem; color: var(--accent); }
-    .footer__socials a { margin: 0 .5rem; color: var(--accent); font-size: 1.5rem; transition: 0.3s; }
-    .footer__socials a:hover { color: var(--text); transform: scale(1.2); }
+    .footer { text-align:center; padding:2rem; background:var(--card); margin-top:3rem; }
+    .footer__title { font-size:1.5rem; color:var(--accent); }
+    .footer__socials a { margin:0 .5rem; color:var(--accent); font-size:1.5rem; transition:0.3s; }
+    .footer__socials a:hover { color:var(--text); transform:scale(1.2); }
 
-    /* ==== ANIMATIONS ==== */
-    .reveal { opacity: 0; transform: translateY(30px); transition: all .8s ease; }
-    .reveal.active { opacity: 1; transform: translateY(0); }
+    /* ==== REVEAL ANIMATION ==== */
+    .reveal { opacity:0; transform:translateY(30px); transition:all .8s ease; }
+    .reveal.active { opacity:1; transform:translateY(0); }
+
   </style>
 </head>
 <body class="light">
 
   <!-- HEADER -->
-  <header class="header" id="header">
+  <header class="header">
     <nav class="nav container">
       <a href="#home" class="nav__logo">Avinash Yadav</a>
       <div class="nav__menu" id="nav-menu">
@@ -125,17 +108,20 @@
     </nav>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO WITH PARTICLES -->
   <section class="home" id="home">
-    <div class="home__img"><img src="assets/img/006.png" alt="Dr. Avinash Yadav"></div>
-    <h1 class="home__title">Hi, I'm <span>Dr. Avinash Yadav</span></h1>
-    <h2 class="home__subtitle">Bachelor of Dental Surgery</h2>
-    <p class="home__description">BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.</p>
-    <a href="#contact" class="button">Contact me <i class="uil uil-message"></i></a>
+    <canvas id="particle-canvas"></canvas>
+    <div class="home__content">
+      <div class="home__img"><img src="assets/img/006.png" alt="Dr. Avinash Yadav"></div>
+      <h1 class="home__title">Hi, I'm <span>Dr. Avinash Yadav</span></h1>
+      <h2 class="home__subtitle">Bachelor of Dental Surgery</h2>
+      <p class="home__description">BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.</p>
+      <a href="#contact" class="button">Contact me <i class="uil uil-message"></i></a>
+    </div>
   </section>
 
   <!-- ABOUT -->
-  <section class="about" id="about">
+  <section class="about reveal" id="about">
     <h2 class="section__title">About Me</h2>
     <span class="section__subtitle">Who I Am</span>
     <div class="about__container">
@@ -153,7 +139,7 @@
   </section>
 
   <!-- SERVICES -->
-  <section class="services" id="services">
+  <section class="services reveal" id="services">
     <h2 class="section__title">Services</h2>
     <span class="section__subtitle">Transforming smiles with care & innovation</span>
     <div class="services__container">
@@ -166,7 +152,7 @@
   </section>
 
   <!-- QUALIFICATION -->
-  <section class="qualification" id="qualification">
+  <section class="qualification reveal" id="qualification">
     <h2 class="section__title">Qualification</h2>
     <span class="section__subtitle">My personal journey</span>
     <div class="qualification__timeline">
@@ -179,7 +165,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="contact" id="contact">
+  <section class="contact reveal" id="contact">
     <h2 class="section__title">Contact Me</h2>
     <span class="section__subtitle">Let’s build something amazing together</span>
     <form class="contact__form">
@@ -191,7 +177,7 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="footer">
+  <footer class="footer reveal">
     <h1 class="footer__title">Avinash Yadav</h1>
     <span class="footer__subtitle">Bachelor of Dental Surgery Graduate</span>
     <div class="footer__socials">
@@ -204,12 +190,12 @@
 
   <!-- ==== SCRIPT ==== -->
   <script>
-    // mobile menu
+    // Mobile Menu
     const navMenu=document.getElementById("nav-menu"),
           navToggle=document.getElementById("nav-toggle");
     navToggle.addEventListener("click",()=>navMenu.classList.toggle("show"));
 
-    // dark mode
+    // Dark Mode
     const themeToggle=document.getElementById("theme-toggle");
     const body=document.body;
     themeToggle.addEventListener("click",()=>{
@@ -217,7 +203,7 @@
       body.classList.toggle("light");
     });
 
-    // reveal on scroll
+    // Scroll Reveal
     const reveals=document.querySelectorAll(".reveal, section");
     window.addEventListener("scroll",()=>{
       for(let r of reveals){
@@ -225,6 +211,67 @@
         if(top<window.innerHeight-100){ r.classList.add("active"); }
       }
     });
+
+    // Particle Background
+    const canvas=document.getElementById('particle-canvas');
+    const ctx=canvas.getContext('2d');
+    canvas.width=window.innerWidth;
+    canvas.height=window.innerHeight;
+
+    window.addEventListener('resize',()=>{canvas.width=window.innerWidth; canvas.height=window.innerHeight;});
+
+    let mouse={x:null, y:null};
+    window.addEventListener('mousemove',(e)=>{mouse.x=e.x; mouse.y=e.y;});
+
+    class Particle{
+      constructor(){
+        this.x=Math.random()*canvas.width;
+        this.y=Math.random()*canvas.height;
+        this.radius=Math.random()*2+1;
+        this.dx=(Math.random()-0.5)*1.5;
+        this.dy=(Math.random()-0.5)*1.5;
+      }
+      draw(){ctx.beginPath(); ctx.arc(this.x,this.y,this.radius,0,Math.PI*2); ctx.fillStyle='rgba(0,119,255,0.7)'; ctx.fill();}
+      update(){
+        if(this.x+this.radius>canvas.width||this.x-this.radius<0) this.dx*=-1;
+        if(this.y+this.radius>canvas.height||this.y-this.radius<0) this.dy*=-1;
+        this.x+=this.dx; this.y+=this.dy;
+        this.draw();
+      }
+    }
+
+    let particlesArray=[];
+    for(let i=0;i<120;i++){particlesArray.push(new Particle());}
+
+    function connectParticles(){
+      for(let a=0;a<particlesArray.length;a++){
+        for(let b=a;b<particlesArray.length;b++){
+          let dx=particlesArray[a].x-particlesArray[b].x;
+          let dy=particlesArray[a].y-particlesArray[b].y;
+          let distance=Math.sqrt(dx*dx+dy*dy);
+          if(distance<120){
+            ctx.beginPath();
+            ctx.strokeStyle='rgba(0,119,255,'+(1-distance/120)+')';
+            ctx.moveTo(particlesArray[a].x,particlesArray[a].y);
+            ctx.lineTo(particlesArray[b].x,particlesArray[b].y);
+            ctx.stroke();
+          }
+        }
+        // Mouse interaction
+        let dxm=particlesArray[a].x-mouse.x;
+        let dym=particlesArray[a].y-mouse.y;
+        let distMouse=Math.sqrt(dxm*dxm+dym*dym);
+        if(distMouse<100){particlesArray[a].x+=dxm*0.01; particlesArray[a].y+=dym*0.01;}
+      }
+    }
+
+    function animate(){
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particlesArray.forEach(p=>p.update());
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 </body>
 </html>
