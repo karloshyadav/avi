@@ -263,96 +263,212 @@
 
 
 
-!--======================= Qualification =======================-->
-<section class="qualification section" id="qualification">
+<section class="qualification__section service__section" id="qualification">
   <h2 class="section__title">Qualification</h2>
   <span class="section__subtitle">My personal journey</span>
 
-  <div class="qualification__container container grid">
-    <div class="qualification__tabs">
-      <button class="qualification__button button--flex qualification__active" data-target="#education">
-        <i class="uil uil-graduation-cap qualification__icon"></i>
-        Education
-      </button>
-    </div>
+  <div class="qualification__container container">
 
-    <div class="qualification__sections">
-      <div class="qualification__content qualification__active" data-content id="education">
+    <div class="qualification__timeline">
 
-        <!-- Qualification Item -->
-        <div class="qualification__data">
-          <div>
-            <h3 class="qualification__title">Upto Class 3</h3>
-            <span class="qualification__subtitle">Nightingale Academy, Banepa, Kavre</span>
-            <div class="qualification__calendar">
-              <i class="uil uil-calendar-alt"></i> Year not specified
-            </div>
-          </div>
-          <div>
-            <span class="qualification__rounder"></span>
-            <span class="qualification__line"></span>
-          </div>
-        </div>
-
-        <!-- Repeat for each step -->
-        <div class="qualification__data">
-          <div>
-            <h3 class="qualification__title">Upto Class 5</h3>
-            <span class="qualification__subtitle">Eastern Jyoti English School, Bhardaha, Saptari</span>
-            <div class="qualification__calendar">
-              <i class="uil uil-calendar-alt"></i> Year not specified
-            </div>
-          </div>
-          <div>
-            <span class="qualification__rounder"></span>
-            <span class="qualification__line"></span>
-          </div>
-        </div>
-
-        <div class="qualification__data">
-          <div>
-            <h3 class="qualification__title">Upto Class 10</h3>
-            <span class="qualification__subtitle">Mother Teresa Secondary School, Biratnagar, Morang</span>
-            <div class="qualification__calendar">
-              <i class="uil uil-calendar-alt"></i> Year not specified
-            </div>
-          </div>
-          <div>
-            <span class="qualification__rounder"></span>
-            <span class="qualification__line"></span>
-          </div>
-        </div>
-
-        <div class="qualification__data">
-          <div>
-            <h3 class="qualification__title">10+2 (Class 12)</h3>
-            <span class="qualification__subtitle">Arniko Awashiya Higher Secondary School, Biratnagar, Morang</span>
-            <div class="qualification__calendar">
-              <i class="uil uil-calendar-alt"></i> Year not specified
-            </div>
-          </div>
-          <div>
-            <span class="qualification__rounder"></span>
-            <span class="qualification__line"></span>
-          </div>
-        </div>
-
-        <div class="qualification__data">
-          <div>
-            <h3 class="qualification__title">BDS Graduate</h3>
-            <span class="qualification__subtitle">B.P. Koirala Institute of Health Sciences, Dharan</span>
-            <div class="qualification__calendar">
-              <i class="uil uil-calendar-alt"></i> 2017 – 2024
-            </div>
-          </div>
-          <div>
-            <span class="qualification__rounder"></span>
+      <!-- Qualification 1 -->
+      <div class="qualification__item">
+        <div class="qualification__content">
+          <h3 class="qualification__title">Upto Class 3</h3>
+          <span class="qualification__subtitle">Nightingale Academy, Banepa, Kavre</span>
+          <div class="qualification__calendar">
+            <i class="uil uil-calendar-alt"></i> Year not specified
           </div>
         </div>
       </div>
+
+      <!-- Qualification 2 -->
+      <div class="qualification__item">
+        <div class="qualification__content">
+          <h3 class="qualification__title">Upto Class 5</h3>
+          <span class="qualification__subtitle">Eastern Jyoti English School, Bhardaha, Saptari</span>
+          <div class="qualification__calendar">
+            <i class="uil uil-calendar-alt"></i> Year not specified
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification 3 -->
+      <div class="qualification__item">
+        <div class="qualification__content">
+          <h3 class="qualification__title">Upto Class 10</h3>
+          <span class="qualification__subtitle">Mother Teresa Secondary School, Biratnagar, Morang</span>
+          <div class="qualification__calendar">
+            <i class="uil uil-calendar-alt"></i> Year not specified
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification 4 -->
+      <div class="qualification__item">
+        <div class="qualification__content">
+          <h3 class="qualification__title">Upto Class 12 (10+2)</h3>
+          <span class="qualification__subtitle">Arniko Awashiya Higher Secondary School, Biratnagar, Morang</span>
+          <div class="qualification__calendar">
+            <i class="uil uil-calendar-alt"></i> Year not specified
+          </div>
+        </div>
+      </div>
+
+      <!-- Qualification 5 -->
+      <div class="qualification__item">
+        <div class="qualification__content">
+          <h3 class="qualification__title">BDS Graduated</h3>
+          <span class="qualification__subtitle">B.P. Koirala Institute of Health Science, Dharan</span>
+          <div class="qualification__calendar">
+            <i class="uil uil-calendar-alt"></i> 2017 - 2024
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
+
+
+<!-- CSS -->
+<style>
+/* Section styling */
+.qualification__section {
+  padding: 4rem 1rem;
+  background: #f9fafc;
+  text-align: center;
+}
+
+.section__title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+}
+
+.section__subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 3rem;
+  display: block;
+}
+
+/* Timeline container */
+.qualification__timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.qualification__timeline::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 4px;
+  height: 100%;
+  background: #ddd;
+  transform: translateX(-50%);
+}
+
+/* Timeline item */
+.qualification__item {
+  position: relative;
+  width: 50%;
+  padding: 1.5rem 2rem;
+  box-sizing: border-box;
+}
+
+.qualification__item:nth-child(odd) {
+  left: 0;
+  text-align: right;
+}
+
+.qualification__item:nth-child(even) {
+  left: 50%;
+  text-align: left;
+}
+
+/* Dot marker */
+.qualification__item::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: #0077ff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.qualification__item:nth-child(odd)::before {
+  right: -10px;
+}
+
+.qualification__item:nth-child(even)::before {
+  left: -10px;
+}
+
+/* Card styling */
+.qualification__content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  display: inline-block;
+  max-width: 90%;
+  animation: fadeInUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.qualification__title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #111;
+  margin-bottom: 0.3rem;
+}
+
+.qualification__subtitle {
+  font-size: 0.95rem;
+  color: #555;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.qualification__calendar {
+  font-size: 0.85rem;
+  color: #888;
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .qualification__timeline::before {
+    left: 10px;
+  }
+
+  .qualification__item {
+    width: 100%;
+    text-align: left !important;
+    padding-left: 2.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .qualification__item::before {
+    left: 0;
+  }
+}
+</style>
 
 
 <!--======================= Contact =======================-->
