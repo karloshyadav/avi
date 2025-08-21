@@ -273,7 +273,184 @@ body {
          </div>
       </div>
    </section>
-   <style> /* Section styling */ .qualification__section { padding: 5rem 1rem; background: linear-gradient(135deg, #f9fafc, #eef3ff); text-align: center; } .section__title { font-size: 2.5rem; font-weight: 700; color: #222; } .section__subtitle { font-size: 1.1rem; color: #666; margin-bottom: 4rem; display: block; } /* Timeline container */ .qualification__timeline { position: relative; max-width: 900px; margin: 0 auto; padding: 2rem 0; } .qualification__timeline::before { content: ""; position: absolute; top: 0; left: 50%; width: 6px; height: 0%; background: linear-gradient(to bottom, #0077ff, #00d4ff); transform: translateX(-50%); border-radius: 4px; transition: height 0.8s ease-out; } /* Timeline item */ .qualification__item { position: relative; width: 50%; padding: 2rem 2.5rem; box-sizing: border-box; opacity: 0; transform: translateY(50px); transition: all 0.8s ease; } .qualification__item:nth-child(odd) { left: 0; text-align: right; } .qualification__item:nth-child(even) { left: 50%; text-align: left; } /* Dot marker */ .qualification__item::before { content: ""; position: absolute; top: 30px; width: 22px; height: 22px; background: #fff; border: 4px solid #0077ff; border-radius: 50%; box-shadow: 0 0 15px rgba(0, 119, 255, 0.6); z-index: 1; transition: 0.3s; } .qualification__item:nth-child(odd)::before { right: -11px; } .qualification__item:nth-child(even)::before { left: -11px; } /* Card styling */ .qualification__content { background: #fff; padding: 1.8rem; border-radius: 14px; box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1); display: inline-block; max-width: 90%; transition: transform 0.3s, box-shadow 0.3s; } .qualification__content:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(0, 119, 255, 0.3); } .qualification__title { font-size: 1.3rem; font-weight: 600; color: #111; } .qualification__subtitle { font-size: 1rem; color: #555; display: block; margin: 0.4rem 0 0.8rem; } .qualification__calendar { font-size: 0.9rem; color: #888; } /* Active animation */ .qualification__item.active { opacity: 1; transform: translateY(0); } /* Responsive */ @media (max-width: 768px) { .qualification__timeline::before { left: 10px; } .qualification__item { width: 100%; text-align: left !important; padding-left: 3rem; margin-bottom: 2rem; } .qualification__item::before { left: 0; } } </style>
+<style>
+:root {
+  --primary: #007bff;
+  --accent: #00d4ff;
+  --dark-bg: #0d1117;
+  --light-bg: #ffffff;
+  --text-dark: #222;
+  --text-light: #f1f5f9;
+  --text-muted: #9ca3af;
+  --glass: rgba(255,255,255,0.08); /* will still work as a soft transparent background */
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, var(--dark-bg), #121826);
+  color: var(--text-light);
+}
+
+/* Section Titles */
+.section__title {
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 2px 12px rgba(0, 212, 255, 0.4);
+}
+
+.section__subtitle {
+  display: block;
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 3rem;
+}
+
+/* Hero Section */
+.home__title {
+  font-size: 2.8rem;
+  color: var(--text-light);
+  text-shadow: 0 3px 15px rgba(0, 0, 0, 0.6);
+}
+
+.home__subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--accent);
+}
+
+.home__description {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Social */
+.home__social {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.home__social-icon .home__icon {
+  font-size: 2rem;
+  padding: 10px;
+  border-radius: 50%;
+  background: var(--glass);
+  transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease;
+  color: var(--text-light);
+}
+
+.home__social-icon .home__icon:hover {
+  transform: scale(1.3) rotate(10deg);
+  color: var(--accent);
+  background: rgba(255,255,255,0.15);
+}
+
+/* Buttons */
+.button {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff !important;
+  border: none;
+  padding: 0.9rem 1.5rem;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3), 0 0 12px rgba(0,212,255,0.5);
+}
+
+.button__icon {
+  font-size: 1.2rem;
+  color: #fff;
+}
+
+/* Services */
+.services__container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  gap: 2rem;
+}
+
+.services__content {
+  background: rgba(255, 255, 255, 0.08); /* simple transparent */
+  padding: 2rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.1);
+  color: var(--text-light);
+}
+
+.services__content:hover {
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.services__icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--accent);
+  transition: transform 0.3s ease;
+}
+
+.services__content:hover .services__icon {
+  transform: rotate(8deg) scale(1.2);
+}
+
+/* Contact */
+.contact__form {
+  background: rgba(255, 255, 255, 0.08); /* no blur */
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255,255,255,0.1);
+  max-width: 600px;
+  margin: auto;
+}
+
+.contact__input, 
+.contact__textarea {
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1.2rem;
+  border: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.08);
+  color: var(--text-light);
+  font-size: 1rem;
+}
+
+.contact__input::placeholder, 
+.contact__textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form__status {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: var(--accent);
+  text-align: center;
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {opacity:0; transform: translateY(30px);}
+  to {opacity:1; transform: translateY(0);}
+}
+</style>
    <script> // Scroll-triggered animation document.addEventListener("scroll", () => { const items = document.querySelectorAll(".qualification__item"); const timeline = document.querySelector(".qualification__timeline::before"); let scrollPos = window.scrollY + window.innerHeight; items.forEach((item, index) => { if (item.offsetTop < scrollPos - 100) { item.classList.add("active"); } }); // Grow the timeline line const timelineLine = document.querySelector(".qualification__timeline::before"); const container = document.querySelector(".qualification__timeline"); if (container) { let progress = Math.min( 100, ((scrollPos - container.offsetTop) / container.offsetHeight) * 100 ); container.style.setProperty("--line-progress", progress + "%"); } }); </script> <!--======================= Contact =======================--> 
    <section class="contact section" id="contact">
       <h2 class="section__title">Contact Me</h2>
