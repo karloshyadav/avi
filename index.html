@@ -1,275 +1,291 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Avinash Here</title>
-    <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="assets/newcss.css" />
-    <link
-      rel="stylesheet"
-      href="https://unicons.iconscout.com/release/v4.0.8/css/line.css"
-    />
-    
-    <style>
-    /* CSS applied only to the .home__social section */
+ <head>
+  <!-- Meta tags -->
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Title -->
+  <title>Avinash | Portfolio</title>
+
+  <!-- External Stylesheets -->
+  <link rel="stylesheet" href="assets/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="assets/newcss.css" />
+  <link 
+    rel="stylesheet" 
+    href="https://unicons.iconscout.com/release/v4.0.8/css/line.css" 
+  />
+
+  <!-- Inline Styles (Better: move to CSS file if possible) -->
+  <style>
+    /* Social Icons Section */
     .home__social {
       display: flex;
-      justify-content: center; /* Centers the icons horizontally */
-      gap: 20px; /* Adds space between icons */
+      justify-content: center;
+      gap: 20px;
     }
 
     .home__social-icon .home__icon {
-      font-size: 40px; /* Optional: Adjust this if you want a base size */
-      transform: scale(1.5); /* Scales the icon to 1.5 times its original size */
-      transition: transform 0.3s ease; /* Smooth transition when scaling */
+      font-size: 2rem;
+      transform: scale(1.2);
+      transition: transform 0.3s ease, color 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Add hover effect for interactivity */
+    .home__social-icon .home__icon:hover {
+      transform: scale(1.4);
+      color: #007bff; /* Change color on hover */
     }
   </style>
+</head>
 
-  </head>
 
-  <body oncontextmenu="return false">
-    <header class="header" id="header">
-      <nav class="nav container">
-        <a href="#" class="nav__logo">AVINASH YADAV</a>
-        <div class="nav__menu" id="nav-menu">
-          <ul class="nav__list grid">
-            <li class="nav__item">
-              <a href="#home" class="nav__link active-link">
-                <i class="uil uil-estate nav__icon"></i>Home
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#about" class="nav__link">
-                <i class="uil uil-user nav__icon"></i>About
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="./photos.html" class="nav__link">
-                <i class="uil uil-file-alt nav__icon"></i>Photos
+ <body oncontextmenu="return false">
+  <!-- Header -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <!-- Logo -->
+      <a href="#" class="nav__logo">Avinash Yadav</a>
 
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#qualification" class="nav__link">
-                <i class="uil uil-briefcase-alt nav__icon"></i>Qualification
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="./portfolio.html" class="nav__link">
-                <i class="uil uil-scenery nav__icon"></i>Play with me
-              </a>
-            </li>
-            <li class="nav__item">
-              <a href="#contact" class="nav__link">
-                <i class="uil uil-message nav__icon"></i>Contact-Me
-              </a>
-            </li>
-          </ul>
-          <i class="uil uil-times nav__close" id="nav-close"></i>
-        </div>
-        <div class="nav__btns">
-          <!-- Theme change button -->
-          <i class="uil uil-moon change-theme" id="theme-button"></i>
+      <!-- Navigation Menu -->
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list grid">
+          <li class="nav__item">
+            <a href="#home" class="nav__link active-link">
+              <i class="uil uil-estate nav__icon"></i> Home
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#about" class="nav__link">
+              <i class="uil uil-user nav__icon"></i> About
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="./photos.html" class="nav__link">
+              <i class="uil uil-image nav__icon"></i> Photos
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#qualification" class="nav__link">
+              <i class="uil uil-briefcase-alt nav__icon"></i> Qualification
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="./portfolio.html" class="nav__link">
+              <i class="uil uil-scenery nav__icon"></i> Play with me
+            </a>
+          </li>
+          <li class="nav__item">
+            <a href="#contact" class="nav__link">
+              <i class="uil uil-message nav__icon"></i> Contact
+            </a>
+          </li>
+        </ul>
+        <!-- Close Button -->
+        <i class="uil uil-times nav__close" id="nav-close"></i>
+      </div>
 
-          <div class="nav__toggle" id="nav-toggle">
-            <i class="uil uil-apps"></i>
-          </div>
-        </div>
-      </nav>
-    </header>
-    <!-- main-->
+      <!-- Navigation Buttons -->
+      <div class="nav__btns">
+        <!-- Dark/Light Theme Button -->
+        <button class="theme-toggle" id="theme-button" aria-label="Toggle theme">
+          <i class="uil uil-moon change-theme"></i>
+        </button>
 
-    <main class="main">
-      <!--========================= Home =====================-->
+        <!-- Mobile Menu Toggle -->
+        <button class="nav__toggle" id="nav-toggle" aria-label="Open menu">
+          <i class="uil uil-apps"></i>
+        </button>
+      </div>
+    </nav>
+  </header>
 
-      <section class="home section" id="home">
-        <div class="home__container container grid">
-          <div class="home__content grid">
-            <div class="home__social">
-    <a
-      href="https://www.facebook.com/abnish.yadav.73"
-      target="_blank"
-      class="home__social-icon"
-    >
-      <i class="uil uil-facebook-f home__icon"></i>
-    </a>
+  <!-- Main -->
+  <main class="main">
+    <!--========================= Home =====================-->
+    <section class="home section" id="home">
+      <div class="home__container container grid">
+        <div class="home__content grid">
 
-    <a
-      href="https://www.instagram.com/avi_avi0727/"
-      target="_blank"
-      class="home__social-icon"
-    >
-      <i class="uil uil-instagram home__icon"></i>
-    </a>
-  </div>
-            <div class="home__img">
-              <svg
-                class="home__blob"
-                viewBox="0 0 200 187"
-                xmlns="http://www.w3.org/2000/svg"
-                xmlns:xlink="http://www.w3.org/1999/xlink"
-              >
-                <mask id="mask0" mask-type="alpha">
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 165.547 
-                      130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 129.362C2.45775 
-                      97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 -0.149132 97.9666 
-                      0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                  />
-                </mask>
-                <g mask="url(#mask0)">
-                  <path
-                    d="M190.312 36.4879C206.582 62.1187 201.309 102.826 182.328 134.186C163.346 
-                      165.547 130.807 187.559 100.226 186.353C69.6454 185.297 41.0228 161.023 21.7403 
-                      129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
-                     -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"
-                  />
-                  <image
-                    class="home__blob-img"
-                    x="-79"
-                    y="-46"
-                    xlink:href="assets/img/006.png"
-                  />
-                </g>
-              </svg>
-            </div>
-            <div class="home__data">
-              <h1 class="home__title">Hi, I'm DR. Avinash Yadav</h1>
-              <h3 class="home__subtitle">
-                Bachelor of Dental Surgery
-              </h3>
-              <p class="home__description">
-                BDS Graduated
-                <strong>B.P. Koirala Institute of Health Sciences</strong>BPKHIS, Nepal.
-              </p>
-              <a href="#contact" class="button button--flex">
-                Contact me<i class="uil uil-message button__icon"></i>
-              </a>
-            </div>
+          <!-- Social Links -->
+          <div class="home__social">
+            <a href="https://www.facebook.com/abnish.yadav.73" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="home__social-icon" 
+               aria-label="Facebook">
+              <i class="uil uil-facebook-f home__icon"></i>
+            </a>
+            <a href="https://www.instagram.com/avi_avi0727/" 
+               target="_blank" 
+               rel="noopener noreferrer"
+               class="home__social-icon" 
+               aria-label="Instagram">
+              <i class="uil uil-instagram home__icon"></i>
+            </a>
           </div>
 
-          <div class="home__scroll">
-            <a href="#about" class="home__scroll-button button--flex">
-              <i class="uil uil-mouse-alt home__scroll-mouse"></i>
-              <span class="home__scroll-name">Scroll down</span>
-              <i class="uil uil-arrow-down home__scroll-arrow"></i>
+          <!-- Hero Image -->
+          <div class="home__img">
+            <svg class="home__blob" viewBox="0 0 200 187"
+                 xmlns="http://www.w3.org/2000/svg">
+              <mask id="mask0" mask-type="alpha">
+                <path d="M190.312 36.4879C206.582 62.1187 ... 190.312 36.4879Z"/>
+              </mask>
+              <g mask="url(#mask0)">
+                <path d="M190.312 36.4879C206.582 62.1187 ... 190.312 36.4879Z"/>
+                <image class="home__blob-img" 
+                       x="-79" y="-46" 
+                       href="assets/img/006.png" 
+                       alt="Profile image"/>
+              </g>
+            </svg>
+          </div>
+
+          <!-- Intro Text -->
+          <div class="home__data">
+            <h1 class="home__title">Hi, I'm Dr. Avinash Yadav</h1>
+            <h3 class="home__subtitle">Bachelor of Dental Surgery</h3>
+            <p class="home__description">
+              BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.
+            </p>
+            <a href="#contact" class="button button--flex">
+              Contact me <i class="uil uil-message button__icon"></i>
             </a>
           </div>
         </div>
-      </section>
 
-      <!--======================= About========================-->
-
-      <section class="about section" id="about">
-        <h2 class="section__title">About Me</h2>
-        <span class="section__subtitle">My introduction</span>
-
-        <div class="about__container container grid">
-          <img src="assets\img\009.jpg" alt="" class="about__img" />
-
-          <div class="about__data">
-            <p class="about__description">
-              I am seeking a dynamic opportunity to provide exceptional dental care and enhance patient experiences through innovative treatment techniques
-            </p>
-
-            <p>
-              With extensive experience in general and cosmetic dentistry, I focus on enhancing patient health and satisfaction. Skilled in both routine and complex treatments, I prioritize comfort and care. Passionate about learning and staying current with new technologies, I seek to join a forward-thinking team to contribute my expertise and grow within the field.         
-            <ul>
-              <li><i class="bi bi-check2-all"></i> <span>Expert in diagnostic, preventative, and restorative dental practices.</span></li>
-              <li><i class="bi bi-check2-all"></i> <span>Committed to providing compassionate care and improving patient outcomes.</span></li>
-              
-            </ul>
-          </p>
-            <div class="about__buttons">
-              <a download="" href="assets\img\avi.pdf" class="button button--flex">
-                Download CV<i class="fas fa-download button__icon"></i>
-              </a>
-            </div>
-          </div>
+        <!-- Scroll Down -->
+        <div class="home__scroll">
+          <a href="#about" class="home__scroll-button button--flex">
+            <i class="uil uil-mouse-alt home__scroll-mouse"></i>
+            <span class="home__scroll-name">Scroll down</span>
+            <i class="uil uil-arrow-down home__scroll-arrow"></i>
+          </a>
         </div>
-      </section>
+      </div>
+    </section>
+  </main>
+</body>
 
-      <!--===================== SERVICES =====================-->
 
+     
+
+<!--======================= About ========================-->
+<section class="about section" id="about">
+  <h2 class="section__title">About Me</h2>
+  <span class="section__subtitle">My introduction</span>
+
+  <div class="about__container container grid">
+    <!-- Profile Image -->
+    <img src="assets/img/009.jpg" alt="Portrait of Dr. Avinash Yadav" class="about__img" />
+
+    <!-- About Content -->
+    <div class="about__data">
+      <p class="about__description">
+        I am seeking a dynamic opportunity to provide exceptional dental care and enhance patient experiences through innovative treatment techniques.
+      </p>
+
+      <p class="about__extra">
+        With extensive experience in general and cosmetic dentistry, I focus on enhancing patient health and satisfaction. Skilled in both routine and complex treatments, I prioritize comfort and care. Passionate about learning and staying current with new technologies, I aim to join a forward-thinking team to contribute my expertise and grow within the field.
+      </p>
+
+      <ul class="about__list">
+        <li><i class="bi bi-check2-all"></i> Expert in diagnostic, preventative, and restorative dental practices.</li>
+        <li><i class="bi bi-check2-all"></i> Committed to providing compassionate care and improving patient outcomes.</li>
+      </ul>
+
+      <div class="about__buttons">
+        <a href="assets/img/avi.pdf" download class="button button--flex">
+          Download CV <i class="fas fa-download button__icon"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!--===================== Services =====================-->
 <section class="services section" id="services">
   <h2 class="section__title">Services</h2>
-  <span class="section__subtitle">Transforming smiles and enhancing patient health through compassionate care and advanced dental techniques.</span>
+  <span class="section__subtitle">
+    Transforming smiles and enhancing health through compassionate care and advanced techniques.
+  </span>
 
   <div class="services__container container grid">
-    <!--==================== Service 1 =================-->
+    <!-- Service 1 -->
     <div class="services__content">
-      <i class="fas fa-house services__icon"></i>
+      <i class="fas fa-tooth services__icon"></i>
       <h3 class="services__title">General Dentistry</h3>
       <p class="services__description">
-        Comprehensive dental care, including routine check-ups, cleanings, and cavity treatments. Regular visits ensure optimal oral health and prevent future complications.
+        Comprehensive care including check-ups, cleanings, and cavity treatments to maintain oral health and prevent complications.
       </p>
     </div>
 
-    <!--==================== Service 2 =================-->
+    <!-- Service 2 -->
     <div class="services__content">
-      <i class="fas fa-paint-brush services__icon"></i>
+      <i class="fas fa-smile services__icon"></i>
       <h3 class="services__title">Cosmetic Dentistry</h3>
       <p class="services__description">
-        Teeth whitening, veneers, and bonding procedures designed to enhance the appearance of your smile. Address discoloration, misalignment, and other cosmetic issues.
+        Teeth whitening, veneers, and bonding procedures to improve smile aesthetics, addressing discoloration and misalignment.
       </p>
     </div>
 
-    <!--==================== Service 3 =================-->
+    <!-- Service 3 -->
     <div class="services__content">
-      <i class="fas fa-screwdriver services__icon"></i>
+      <i class="fas fa-tools services__icon"></i>
       <h3 class="services__title">Restorative Dentistry</h3>
       <p class="services__description">
-        Procedures such as fillings, crowns, and bridges to repair and restore decayed, damaged, or missing teeth. Uses modern materials and techniques for durable, natural-looking results.
+        Fillings, crowns, and bridges to repair and restore teeth using durable, natural-looking materials and techniques.
       </p>
     </div>
 
-    <!--==================== Service 4 =================-->
+    <!-- Service 4 -->
     <div class="services__content">
       <i class="fas fa-child services__icon"></i>
       <h3 class="services__title">Pediatric Dentistry</h3>
       <p class="services__description">
-        Gentle, age-appropriate dental care for children, ensuring healthy tooth growth and helping young patients develop lifelong good oral hygiene habits.
+        Gentle dental care for children, ensuring healthy growth while fostering lifelong oral hygiene habits.
       </p>
     </div>
 
-    <!--==================== Service 5 =================-->
+    <!-- Service 5 -->
     <div class="services__content">
-      <i class="fas fa-exclamation-triangle services__icon"></i>
-      <h3 class="services__title">Emergency Dental Care</h3>
+      <i class="fas fa-ambulance services__icon"></i>
+      <h3 class="services__title">Emergency Care</h3>
       <p class="services__description">
-        Prompt and professional care for dental emergencies such as broken teeth, severe pain, or injury to resolve discomfort and urgent dental issues.
+        Prompt treatment for broken teeth, severe pain, and dental injuries to relieve discomfort and address urgent issues.
       </p>
     </div>
   </div>
 </section>
 
 
-      <!--==================== Qualifications ==================-->
 
-<section class="qualification__section service__section" id="qualification">
+<!--======================= Qualification =======================-->
+<section class="qualification section" id="qualification">
   <h2 class="section__title">Qualification</h2>
   <span class="section__subtitle">My personal journey</span>
 
-  <div class="qualification__container container grid services__container">
+  <div class="qualification__container container grid">
     <div class="qualification__tabs">
-      <div class="qualification__button button--flex qualification__active" data-target="#education">
+      <button class="qualification__button button--flex qualification__active" data-target="#education">
         <i class="uil uil-graduation-cap qualification__icon"></i>
         Education
-      </div>
+      </button>
     </div>
 
     <div class="qualification__sections">
-      <!--====== Qualification Content 1 ======-->
-      <div class="qualification__content qualifiation__active services__content" data-content id="education">
-        <!--====== Qualification 1 ======-->
+      <div class="qualification__content qualification__active" data-content id="education">
+
+        <!-- Qualification Item -->
         <div class="qualification__data">
           <div>
             <h3 class="qualification__title">Upto Class 3</h3>
             <span class="qualification__subtitle">Nightingale Academy, Banepa, Kavre</span>
-            <div class="qualification__calender">
-              <i class="uil uil-calendar-alt"></i> - Year not specified
+            <div class="qualification__calendar">
+              <i class="uil uil-calendar-alt"></i> Year not specified
             </div>
           </div>
           <div>
@@ -278,13 +294,13 @@
           </div>
         </div>
 
-        <!--====== Qualification 2 ======-->
+        <!-- Repeat for each step -->
         <div class="qualification__data">
           <div>
             <h3 class="qualification__title">Upto Class 5</h3>
             <span class="qualification__subtitle">Eastern Jyoti English School, Bhardaha, Saptari</span>
-            <div class="qualification__calender">
-              <i class="uil uil-calendar-alt"></i> - Year not specified
+            <div class="qualification__calendar">
+              <i class="uil uil-calendar-alt"></i> Year not specified
             </div>
           </div>
           <div>
@@ -293,13 +309,12 @@
           </div>
         </div>
 
-        <!--====== Qualification 3 ======-->
         <div class="qualification__data">
           <div>
             <h3 class="qualification__title">Upto Class 10</h3>
             <span class="qualification__subtitle">Mother Teresa Secondary School, Biratnagar, Morang</span>
-            <div class="qualification__calender">
-              <i class="uil uil-calendar-alt"></i> - Year not specified
+            <div class="qualification__calendar">
+              <i class="uil uil-calendar-alt"></i> Year not specified
             </div>
           </div>
           <div>
@@ -308,13 +323,12 @@
           </div>
         </div>
 
-        <!--====== Qualification 4 ======-->
         <div class="qualification__data">
           <div>
-            <h3 class="qualification__title">Upto Class 12 (10+2)</h3>
+            <h3 class="qualification__title">10+2 (Class 12)</h3>
             <span class="qualification__subtitle">Arniko Awashiya Higher Secondary School, Biratnagar, Morang</span>
-            <div class="qualification__calender">
-              <i class="uil uil-calendar-alt"></i> - Year not specified
+            <div class="qualification__calendar">
+              <i class="uil uil-calendar-alt"></i> Year not specified
             </div>
           </div>
           <div>
@@ -323,13 +337,12 @@
           </div>
         </div>
 
-        <!--====== Qualification 5 ======-->
         <div class="qualification__data">
           <div>
-            <h3 class="qualification__title">BDS Graduated</h3>
-            <span class="qualification__subtitle">B.P. Koirala Institute of Health Science, Dharan</span>
-            <div class="qualification__calender">
-              <i class="uil uil-calendar-alt"></i> 2017 - 2024
+            <h3 class="qualification__title">BDS Graduate</h3>
+            <span class="qualification__subtitle">B.P. Koirala Institute of Health Sciences, Dharan</span>
+            <div class="qualification__calendar">
+              <i class="uil uil-calendar-alt"></i> 2017 – 2024
             </div>
           </div>
           <div>
@@ -341,30 +354,27 @@
   </div>
 </section>
 
-      
+<!--======================= Contact =======================-->
 <section class="contact section" id="contact">
   <h2 class="section__title">Contact Me</h2>
   <span class="section__subtitle">Get in touch</span>
 
   <div class="contact__container container grid">
+    <!-- Contact Info -->
     <div>
       <div class="contact__information">
         <i class="uil uil-calling contact__icon"></i>
         <div>
           <h3 class="contact__title">Phone</h3>
-          <span class="contact__subtitle">
-            <a href="tel:+9779808898885">(+977) 9808898885</a>
-          </span>
+          <a href="tel:+9779808898885" class="contact__subtitle">(+977) 9808898885</a>
         </div>
       </div>
 
       <div class="contact__information">
-        <i class="uil uil-envelope-minus contact__icon"></i>
+        <i class="uil uil-envelope contact__icon"></i>
         <div>
           <h3 class="contact__title">Email</h3>
-          <span class="contact__subtitle">
-            <a href="mailto:abhinashydv77@gmail.com">abhinashydv77@gmail.com</a>
-          </span>
+          <a href="mailto:abhinashydv77@gmail.com" class="contact__subtitle">abhinashydv77@gmail.com</a>
         </div>
       </div>
 
@@ -377,95 +387,79 @@
       </div>
     </div>
 
-    <form id="contact-form">
+    <!-- Contact Form -->
+    <form id="contact-form" class="contact__form">
       <input type="text" id="name" placeholder="Your Name" required>
       <input type="email" id="email" placeholder="Your Email" required>
       <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="button" onclick="sendEmail()">Send Message</button>
+      <button type="submit" class="button button--flex">
+        Send Message <i class="uil uil-message button__icon"></i>
+      </button>
     </form>
   </div>
-
-  <!-- Include EmailJS Library -->
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
-  <script>
-    function sendEmail() {
-        emailjs.init("tagwryv93d4ynNSNw"); // Your EmailJS User ID
-
-        var params = {
-            from_name: document.getElementById("name").value,
-            from_email: document.getElementById("email").value,
-            message: document.getElementById("message").value
-        };
-
-        emailjs.send("service_89srmw8", "template_ygjd1cq", params) // Replace with your actual Service ID & Template ID
-        .then(function(response) {
-            alert("Message sent successfully!");
-            document.getElementById("contact-form").reset(); // Clears the form after sending
-        }, function(error) {
-            alert("Failed to send message. Please try again later.");
-            console.error("EmailJS Error:", error); // Log error to console for debugging
-        });
-    }
-  </script>
 </section>
 
-
-    </main>
-
-    <!--================== Footer ===============-->
-    <footer class="footer">
-      <div class="footer__bg">
-        <div class="footer__container container grid">
-          <div>
-            <h1 class="footer__title">AVINASH YADAV</h1>
-            <span class="footer__subtitle"
-              >Bachelor of Dental Surgery Graduated</span
-            >
-          </div>
-
-          <ul class="footer__links">
-            <li>
-              <a href="#qualification" class="footer__link">Qualification</a>
-            </li>
-            <li>
-              <a href="#portfolio" class="footer__link">Portfolio</a>
-            </li>
-            <li>
-              <a href="#contact" class="footer__link">Contact-Me</a>
-            </li>
-          </ul>
-
-          <div class="footer__socials">
-            <a
-              href="https://www.instagram.com/venkateeshh/"
-              class="footer__social"
-              target="__blank"
-            >
-            <i class="fa-brands fa-instagram"></i>
-            </a>
-
-            <a
-              href="https://twitter.com/Venkateeshhh"
-              target="__blank"
-              class="footer__social"
-            >
-            <i class="fa-brands fa-x-twitter"></i>
-            </a>
-          </div>
-        </div>
-
-        <p class="footer__copy">&#169; Avinash Yadav. All right reserved</p>
+<!--======================= Footer =======================-->
+<footer class="footer">
+  <div class="footer__bg">
+    <div class="footer__container container grid">
+      <div>
+        <h1 class="footer__title">Avinash Yadav</h1>
+        <span class="footer__subtitle">Bachelor of Dental Surgery Graduate</span>
       </div>
-    </footer>
 
-    <!--================== SCROLL TOP ==================-->
-    <a href="#" class="scrollup" id="scroll-up">
-      <i class="uil uil-arrow-up scrollup__icon"></i>
-    </a>
+      <ul class="footer__links">
+        <li><a href="#qualification" class="footer__link">Qualification</a></li>
+        <li><a href="#portfolio" class="footer__link">Portfolio</a></li>
+        <li><a href="#contact" class="footer__link">Contact</a></li>
+      </ul>
 
-    <script type="text/javascript" src="assets/swiper-bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/2205d59d52.js" crossorigin="anonymous"></script>
-    <script src="assets/ptj.js"></script>
-  </body>
-</html>
+      <div class="footer__socials">
+        <a href="https://www.instagram.com/venkateeshh/" class="footer__social" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://twitter.com/Venkateeshhh" class="footer__social" target="_blank" rel="noopener noreferrer">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+      </div>
+    </div>
+
+    <p class="footer__copy">&#169; 2024 Avinash Yadav. All rights reserved.</p>
+  </div>
+</footer>
+
+<!--================== Scroll Top ==================-->
+<a href="#" class="scrollup" id="scroll-up">
+  <i class="uil uil-arrow-up scrollup__icon"></i>
+</a>
+
+<!--================== Scripts ==================-->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script src="https://kit.fontawesome.com/2205d59d52.js" crossorigin="anonymous"></script>
+<script src="assets/swiper-bundle.min.js"></script>
+<script src="assets/ptj.js"></script>
+
+<script>
+  emailjs.init("tagwryv93d4ynNSNw"); // Your EmailJS Public Key
+
+  document.getElementById("contact-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const params = {
+      from_name: document.getElementById("name").value,
+      from_email: document.getElementById("email").value,
+      message: document.getElementById("message").value
+    };
+
+    emailjs.send("service_89srmw8", "template_ygjd1cq", params)
+      .then(() => {
+        alert("Message sent successfully!");
+        this.reset();
+      })
+      .catch(error => {
+        alert("Failed to send message. Please try again later.");
+        console.error("EmailJS Error:", error);
+      });
+  });
+</script>
+
