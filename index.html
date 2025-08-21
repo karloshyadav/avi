@@ -7,6 +7,236 @@
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <style>
+    /* ==== RESET ==== */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; line-height: 1.6; overflow-x: hidden; }
+
+    /* ==== THEME COLORS ==== */
+    body.light { --bg: #f8f9fa; --text: #222; --card: #fff; --accent: #0077ff; }
+    body.dark { --bg: #0d1117; --text: #eaeaea; --card: #161b22; --accent: #58a6ff; }
+    body { background: var(--bg); color: var(--text); transition: all 0.4s ease; }
+
+    /* ==== HEADER ==== */
+    .header {
+      position: fixed; top: 0; left: 0; right: 0;
+      background: var(--card); backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      z-index: 1000;
+    }
+    .nav.container {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1rem 2rem; max-width: 1200px; margin: auto;
+    }
+    .nav__logo { font-size: 1.3rem; font-weight: 700; text-decoration: none; color: var(--accent); }
+
+    /* ==== NAV MENU ==== */
+    .nav__menu { display: none; }
+    .nav__menu.show { display: block; position: absolute; top: 60px; right: 1rem; background: var(--card); padding: 1rem; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.2);}
+    .nav__list { list-style: none; display: grid; gap: 0.8rem; }
+    .nav__link { text-decoration: none; color: var(--text); font-weight: 500; transition: 0.3s; }
+    .nav__link:hover { color: var(--accent); }
+
+    .nav__btns button { background: none; border: none; cursor: pointer; font-size: 1.4rem; color: var(--accent); margin-left: .5rem; }
+
+    @media(min-width:768px){
+      .nav__menu{display:block !important; position: static; background: none; box-shadow: none;}
+      .nav__list{display:flex; gap:2rem;}
+      .nav__toggle, .nav__close{display:none;}
+    }
+
+    /* ==== HERO ==== */
+    .home { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 2rem 1rem; position: relative; overflow: hidden; }
+    .home__img img { border-radius: 50%; width: 180px; border: 4px solid var(--accent); box-shadow: 0 0 20px rgba(0,0,0,0.3); }
+    .home__title { font-size: 2.2rem; margin: 1rem 0 .5rem; }
+    .home__title span { color: var(--accent); }
+    .home__subtitle { font-size: 1.2rem; color: gray; margin-bottom: 1rem; }
+    .home__description { max-width: 600px; margin: auto; }
+    .button { background: var(--accent); color: #fff; padding: .8rem 1.5rem; border-radius: 50px; display: inline-flex; align-items: center; gap: .5rem; text-decoration: none; transition: 0.3s; }
+    .button:hover { transform: scale(1.05); box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+
+    /* ==== SECTIONS ==== */
+    section { padding: 4rem 1rem; max-width: 1100px; margin: auto; }
+    .section__title { font-size: 2rem; text-align: center; margin-bottom: 1rem; color: var(--accent); }
+    .section__subtitle { text-align: center; margin-bottom: 2rem; color: gray; }
+
+    /* ==== ABOUT ==== */
+    .about__container { display: grid; gap: 2rem; align-items: center; }
+    .about__img { width: 250px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.2); }
+    .about__data ul { margin: 1rem 0; }
+    .about__data li { margin: .5rem 0; }
+
+    @media(min-width:768px){
+      .about__container { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ==== SERVICES ==== */
+    .services__container { display: grid; gap: 1.5rem; }
+    .services__content {
+      background: var(--card); padding: 2rem; border-radius: 16px; text-align: center;
+      transition: 0.4s; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .services__content:hover { transform: translateY(-5px) scale(1.02); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+    .services__icon { font-size: 2rem; color: var(--accent); margin-bottom: .5rem; }
+    @media(min-width:768px){ .services__container{grid-template-columns: repeat(3,1fr);} }
+
+    /* ==== QUALIFICATION ==== */
+    .qualification__timeline { border-left: 3px solid var(--accent); padding-left: 1rem; }
+    .qualification__item { margin-bottom: 1.5rem; position: relative; }
+    .qualification__item::before { content:""; position: absolute; left: -10px; top: 5px; width: 15px; height: 15px; background: var(--accent); border-radius: 50%; }
+
+    /* ==== CONTACT ==== */
+    .contact__form { display: grid; gap: 1rem; max-width: 600px; margin: auto; }
+    .contact__input, .contact__textarea { padding: .8rem; border-radius: 8px; border: 2px solid #ccc; font-size: 1rem; width: 100%; }
+    .contact__input:focus, .contact__textarea:focus { border-color: var(--accent); outline: none; }
+
+    /* ==== FOOTER ==== */
+    .footer { text-align: center; padding: 2rem; background: var(--card); margin-top: 3rem; }
+    .footer__title { font-size: 1.5rem; color: var(--accent); }
+    .footer__socials a { margin: 0 .5rem; color: var(--accent); font-size: 1.5rem; transition: 0.3s; }
+    .footer__socials a:hover { color: var(--text); transform: scale(1.2); }
+
+    /* ==== ANIMATIONS ==== */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all .8s ease; }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body class="light">
+
+  <!-- HEADER -->
+  <header class="header" id="header">
+    <nav class="nav container">
+      <a href="#home" class="nav__logo">Avinash Yadav</a>
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="#home" class="nav__link">Home</a></li>
+          <li><a href="#about" class="nav__link">About</a></li>
+          <li><a href="#services" class="nav__link">Services</a></li>
+          <li><a href="#qualification" class="nav__link">Qualification</a></li>
+          <li><a href="#contact" class="nav__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="nav__btns">
+        <button id="theme-toggle"><i class="uil uil-moon"></i></button>
+        <button class="nav__toggle" id="nav-toggle"><i class="uil uil-apps"></i></button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="home" id="home">
+    <div class="home__img"><img src="assets/img/006.png" alt="Dr. Avinash Yadav"></div>
+    <h1 class="home__title">Hi, I'm <span>Dr. Avinash Yadav</span></h1>
+    <h2 class="home__subtitle">Bachelor of Dental Surgery</h2>
+    <p class="home__description">BDS Graduate from <strong>B.P. Koirala Institute of Health Sciences (BPKIHS), Nepal</strong>.</p>
+    <a href="#contact" class="button">Contact me <i class="uil uil-message"></i></a>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <h2 class="section__title">About Me</h2>
+    <span class="section__subtitle">Who I Am</span>
+    <div class="about__container">
+      <img src="assets/img/009.jpg" alt="About" class="about__img">
+      <div class="about__data">
+        <p>I am seeking a dynamic opportunity to provide exceptional dental care and enhance patient experiences through innovative treatment techniques.</p>
+        <p>With extensive experience in general and cosmetic dentistry, I focus on enhancing patient health and satisfaction.</p>
+        <ul>
+          <li>✔ Expert in diagnostics & restorative practices.</li>
+          <li>✔ Committed to compassionate care & outcomes.</li>
+        </ul>
+        <a href="assets/img/avi.pdf" download class="button">Download CV <i class="uil uil-download-alt"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <h2 class="section__title">Services</h2>
+    <span class="section__subtitle">Transforming smiles with care & innovation</span>
+    <div class="services__container">
+      <div class="services__content"><i class="fas fa-tooth services__icon"></i><h3>General Dentistry</h3><p>Check-ups, cleanings & cavity care to maintain oral health.</p></div>
+      <div class="services__content"><i class="fas fa-smile services__icon"></i><h3>Cosmetic Dentistry</h3><p>Whitening, veneers & bonding for a beautiful smile.</p></div>
+      <div class="services__content"><i class="fas fa-tools services__icon"></i><h3>Restorative Dentistry</h3><p>Crowns, fillings & bridges with natural aesthetics.</p></div>
+      <div class="services__content"><i class="fas fa-child services__icon"></i><h3>Pediatric Dentistry</h3><p>Gentle care for children fostering lifelong oral health.</p></div>
+      <div class="services__content"><i class="fas fa-ambulance services__icon"></i><h3>Emergency Care</h3><p>Quick relief for broken teeth, pain & urgent injuries.</p></div>
+    </div>
+  </section>
+
+  <!-- QUALIFICATION -->
+  <section class="qualification" id="qualification">
+    <h2 class="section__title">Qualification</h2>
+    <span class="section__subtitle">My personal journey</span>
+    <div class="qualification__timeline">
+      <div class="qualification__item"><h3>Upto Class 3</h3><span>Nightingale Academy, Banepa</span></div>
+      <div class="qualification__item"><h3>Upto Class 5</h3><span>Eastern Jyoti English School, Saptari</span></div>
+      <div class="qualification__item"><h3>Upto Class 10</h3><span>Mother Teresa Secondary School, Biratnagar</span></div>
+      <div class="qualification__item"><h3>Upto Class 12</h3><span>Arniko Awashiya Higher Secondary School, Biratnagar</span></div>
+      <div class="qualification__item"><h3>BDS Graduated</h3><span>B.P. Koirala Institute of Health Sciences, Dharan (2017-2024)</span></div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <h2 class="section__title">Contact Me</h2>
+    <span class="section__subtitle">Let’s build something amazing together</span>
+    <form class="contact__form">
+      <input type="text" class="contact__input" placeholder="Your Name" required>
+      <input type="email" class="contact__input" placeholder="Your Email" required>
+      <textarea class="contact__textarea" placeholder="Your Message" required></textarea>
+      <button type="submit" class="button">Send Message <i class="uil uil-message"></i></button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <h1 class="footer__title">Avinash Yadav</h1>
+    <span class="footer__subtitle">Bachelor of Dental Surgery Graduate</span>
+    <div class="footer__socials">
+      <a href="https://www.instagram.com/avi_avi0727/" target="_blank"><i class="uil uil-instagram"></i></a>
+      <a href="https://www.linkedin.com/in/avinashyadav" target="_blank"><i class="uil uil-linkedin"></i></a>
+      <a href="https://github.com/avinashyadav" target="_blank"><i class="uil uil-github"></i></a>
+    </div>
+    <p class="footer__copy">&#169; Avinash Yadav. All rights reserved.</p>
+  </footer>
+
+  <!-- ==== SCRIPT ==== -->
+  <script>
+    // mobile menu
+    const navMenu=document.getElementById("nav-menu"),
+          navToggle=document.getElementById("nav-toggle");
+    navToggle.addEventListener("click",()=>navMenu.classList.toggle("show"));
+
+    // dark mode
+    const themeToggle=document.getElementById("theme-toggle");
+    const body=document.body;
+    themeToggle.addEventListener("click",()=>{
+      body.classList.toggle("dark");
+      body.classList.toggle("light");
+    });
+
+    // reveal on scroll
+    const reveals=document.querySelectorAll(".reveal, section");
+    window.addEventListener("scroll",()=>{
+      for(let r of reveals){
+        const top=r.getBoundingClientRect().top;
+        if(top<window.innerHeight-100){ r.classList.add("active"); }
+      }
+    });
+  </script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Avinash Yadav Portfolio</title>
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
 
   <style>
     /* Basic Reset */
