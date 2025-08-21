@@ -56,7 +56,21 @@
 
     /* ABOUT */
     .about__container { display:grid; gap:3rem; align-items:center; }
-    .about__img { border-radius:30px; box-shadow: 0 20px 50px rgba(0,0,0,0.2); transition: transform 0.4s; }
+/* ABOUT IMAGE FIX */
+.about__img {
+  width: 100%;
+  max-width: 350px;   /* sets a maximum size */
+  height: auto;       /* maintains aspect ratio */
+  border-radius: 30px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  transition: transform 0.4s;
+  justify-self: center; /* centers the image in the grid */
+}
+@media (max-width:768px){
+  .about__container { grid-template-columns: 1fr; gap:2rem; }
+  .about__img { max-width: 250px; }
+}
+
     .about__img:hover { transform: scale(1.05) rotate(2deg); }
     .about__data p { margin-bottom:1rem; line-height:1.7; }
 
