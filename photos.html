@@ -1,171 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photo Grid</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        body, html {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: auto;
-        }
-        body {
-            background: linear-gradient(135deg, #74ebd5, #acb6e5);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
-            padding: 20px;
-        }
-        .container {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: center;
-            background: white;
-            width: 100%;
-            height: 100%;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
-            overflow: auto;
-        }
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 20px;
-            color: #333;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-        }
-        .grid img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            cursor: pointer;
-        }
-        .grid img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        /* POPUP STYLING */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            justify-content: center;
-            align-items: center;
-        }
-        .popup img {
-            max-width: 80%;
-            max-height: 80%;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.5);
-        }
-        .popup .close {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 40px;
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Gallery | Avinash Yadav</title>
+  <link rel="stylesheet" href="assets/css/gallery.css">
 </head>
 <body>
-    <div class="container">
-        <h1>My Pictures</h1>
-        <div class="grid">
-<img src="assets/img/1 (1).png" alt="Picture 1">
-        <img src="assets/img/1 (2).png" alt="Picture 2">
-        <img src="assets/img/1 (3).png" alt="Picture 3">
-        <img src="assets/img/1 (4).png" alt="Picture 4">
-        <img src="assets/img/1 (5).png" alt="Picture 5">
-        <img src="assets/img/1 (6).png" alt="Picture 6">
-        <img src="assets/img/1 (7).png" alt="Picture 7">
-        <img src="assets/img/1 (8).png" alt="Picture 8">
-        <img src="assets/img/1 (9).png" alt="Picture 9">
-        <img src="assets/img/1 (10).png" alt="Picture 10">
-        <img src="assets/img/1 (11).png" alt="Picture 11">
-        <img src="assets/img/1 (12).png" alt="Picture 12">
-        <img src="assets/img/1 (13).png" alt="Picture 13">
-        <img src="assets/img/1 (14).png" alt="Picture 14">
-        <img src="assets/img/1 (15).png" alt="Picture 15">
-        <img src="assets/img/1 (16).png" alt="Picture 16">
-        <img src="assets/img/1 (17).png" alt="Picture 17">
-        <img src="assets/img/1 (18).png" alt="Picture 18">
-        <img src="assets/img/1 (19).png" alt="Picture 19">
-        <img src="assets/img/1 (20).png" alt="Picture 20">
-        <img src="assets/img/1 (21).png" alt="Picture 21">
-        <img src="assets/img/1 (22).png" alt="Picture 22">
-        <img src="assets/img/1 (23).png" alt="Picture 23">
-        <img src="assets/img/1 (24).png" alt="Picture 24">
-        <img src="assets/img/1 (25).png" alt="Picture 25">
-        <img src="assets/img/1 (26).png" alt="Picture 26">
-        <img src="assets/img/1 (27).png" alt="Picture 27">
-        <img src="assets/img/1 (28).png" alt="Picture 28">
-        <img src="assets/img/1 (29).png" alt="Picture 29">
-        <img src="assets/img/1 (30).png" alt="Picture 30">
-        <img src="assets/img/1 (31).png" alt="Picture 31">
-        <img src="assets/img/1 (32).png" alt="Picture 32">
-        <img src="assets/img/1 (33).png" alt="Picture 33">
-        <img src="assets/img/1 (34).png" alt="Picture 34">
-        <img src="assets/img/1 (35).png" alt="Picture 35">
-        <img src="assets/img/1 (36).png" alt="Picture 36">
-        <img src="assets/img/1 (37).png" alt="Picture 37">
-        <img src="assets/img/1 (38).png" alt="Picture 38">
-        <img src="assets/img/1.png" alt="Picture 39">            
-        </div>
+  <div class="gallery-shell">
+    <div class="gallery-header">
+      <h1>My Pictures</h1>
+      <a class="gallery-back" href="index.html">
+        <span aria-hidden="true">&#8592;</span>
+        <span>Back to Portfolio</span>
+      </a>
     </div>
-
-    <!-- POPUP MODAL -->
-    <div class="popup" id="popup">
-        <span class="close" onclick="closePopup()">&times;</span>
-        <img id="popupImg" src="" alt="Enlarged Image">
+    <div class="gallery-grid">
+      <figure class="gallery__item"><img src="assets/img/1 (1).png" alt="Picture 1" loading="lazy" data-gallery-index="0"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (2).png" alt="Picture 2" loading="lazy" data-gallery-index="1"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (3).png" alt="Picture 3" loading="lazy" data-gallery-index="2"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (4).png" alt="Picture 4" loading="lazy" data-gallery-index="3"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (5).png" alt="Picture 5" loading="lazy" data-gallery-index="4"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (6).png" alt="Picture 6" loading="lazy" data-gallery-index="5"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (7).png" alt="Picture 7" loading="lazy" data-gallery-index="6"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (8).png" alt="Picture 8" loading="lazy" data-gallery-index="7"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (9).png" alt="Picture 9" loading="lazy" data-gallery-index="8"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (10).png" alt="Picture 10" loading="lazy" data-gallery-index="9"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (11).png" alt="Picture 11" loading="lazy" data-gallery-index="10"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (12).png" alt="Picture 12" loading="lazy" data-gallery-index="11"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (13).png" alt="Picture 13" loading="lazy" data-gallery-index="12"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (14).png" alt="Picture 14" loading="lazy" data-gallery-index="13"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (15).png" alt="Picture 15" loading="lazy" data-gallery-index="14"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (16).png" alt="Picture 16" loading="lazy" data-gallery-index="15"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (17).png" alt="Picture 17" loading="lazy" data-gallery-index="16"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (18).png" alt="Picture 18" loading="lazy" data-gallery-index="17"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (19).png" alt="Picture 19" loading="lazy" data-gallery-index="18"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (20).png" alt="Picture 20" loading="lazy" data-gallery-index="19"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (21).png" alt="Picture 21" loading="lazy" data-gallery-index="20"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (22).png" alt="Picture 22" loading="lazy" data-gallery-index="21"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (23).png" alt="Picture 23" loading="lazy" data-gallery-index="22"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (24).png" alt="Picture 24" loading="lazy" data-gallery-index="23"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (25).png" alt="Picture 25" loading="lazy" data-gallery-index="24"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (26).png" alt="Picture 26" loading="lazy" data-gallery-index="25"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (27).png" alt="Picture 27" loading="lazy" data-gallery-index="26"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (28).png" alt="Picture 28" loading="lazy" data-gallery-index="27"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (29).png" alt="Picture 29" loading="lazy" data-gallery-index="28"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (30).png" alt="Picture 30" loading="lazy" data-gallery-index="29"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (31).png" alt="Picture 31" loading="lazy" data-gallery-index="30"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (32).png" alt="Picture 32" loading="lazy" data-gallery-index="31"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (33).png" alt="Picture 33" loading="lazy" data-gallery-index="32"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (34).png" alt="Picture 34" loading="lazy" data-gallery-index="33"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (35).png" alt="Picture 35" loading="lazy" data-gallery-index="34"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (36).png" alt="Picture 36" loading="lazy" data-gallery-index="35"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (37).png" alt="Picture 37" loading="lazy" data-gallery-index="36"></figure>
+      <figure class="gallery__item"><img src="assets/img/1 (38).png" alt="Picture 38" loading="lazy" data-gallery-index="37"></figure>
+      <figure class="gallery__item"><img src="assets/img/1.png" alt="Picture 39" loading="lazy" data-gallery-index="38"></figure>
     </div>
+  </div>
 
-    <script>
-        const images = document.querySelectorAll('.grid img');
-        const popup = document.getElementById('popup');
-        const popupImg = document.getElementById('popupImg');
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button type="button" class="lightbox__close" aria-label="Close image">&times;</button>
+    <img id="lightboxImg" src="" alt="Expanded gallery view">
+  </div>
 
-        images.forEach(img => {
-            img.addEventListener('click', function() {
-                popup.style.display = 'flex';
-                popupImg.src = this.src;
-            });
-        });
-
-        function closePopup() {
-            popup.style.display = 'none';
-        }
-
-        // Close when clicking outside the image
-        popup.addEventListener('click', function(event) {
-            if (event.target !== popupImg) {
-                closePopup();
-            }
-        });
-    </script>
+  <script src="assets/js/gallery.js"></script>
 </body>
 </html>

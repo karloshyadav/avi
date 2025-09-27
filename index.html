@@ -22,12 +22,17 @@
         <li><a href="#about" class="nav__link">About</a></li>
         <li><a href="#services" class="nav__link">Services</a></li>
         <li><a href="#qualification" class="nav__link">Qualification</a></li>
+        <li><a href="photos.html" class="nav__link">Photos</a></li>
         <li><a href="#contact" class="nav__link">Contact</a></li>
       </ul>
     </div>
     <div class="nav__btns">
-      <button id="theme-toggle" aria-label="Toggle theme"><i class="uil uil-moon"></i></button>
-      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><i class="uil uil-apps"></i></button>
+      <button id="theme-toggle" aria-label="Toggle theme">
+        <i class="uil uil-moon"></i>
+      </button>
+      <button class="nav__toggle" id="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <i class="uil uil-apps"></i>
+      </button>
     </div>
   </nav>
 </header>
@@ -35,6 +40,11 @@
 <!-- HERO WITH PARTICLES -->
 <section class="home" id="home">
   <canvas id="particle-canvas"></canvas>
+  <div class="home__orbs" aria-hidden="true">
+    <span class="home__orb"></span>
+    <span class="home__orb"></span>
+    <span class="home__orb"></span>
+  </div>
   <div class="home__content">
     <div class="home__img"><img src="assets/img/006.png" alt="Dr. Avinash Yadav"></div>
     <h1 class="home__title">Hi, I'm <span>Dr. Avinash Yadav</span></h1>
@@ -101,10 +111,13 @@
   <div class="section-shell">
     <h2 class="section__title">Contact Me</h2>
     <span class="section__subtitle">Let’s build something amazing together</span>
-    <form class="contact__form">
-      <input type="text" class="contact__input" placeholder="Your Name" required>
-      <input type="email" class="contact__input" placeholder="Your Email" required>
-      <textarea class="contact__textarea" placeholder="Your Message" required></textarea>
+    <form class="contact__form" action="https://formsubmit.co/karloshyadav18@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New enquiry from Avinash Yadav portfolio">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" class="contact__input" name="name" placeholder="Your Name" required>
+      <input type="email" class="contact__input" name="email" placeholder="Your Email" required>
+      <textarea class="contact__textarea" name="message" placeholder="Your Message" required></textarea>
       <button type="submit" class="button">Send Message <i class="uil uil-message"></i></button>
     </form>
   </div>
