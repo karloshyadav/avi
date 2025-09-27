@@ -104,18 +104,15 @@ const navObserver = new IntersectionObserver(
 
 sectionElements.forEach((section) => navObserver.observe(section));
 
-// Contact form feedback (non-submitting for demo)
+// Contact form feedback for submission state
 if (contactForm) {
-  contactForm.addEventListener('submit', (event) => {
-    event.preventDefault();
+  contactForm.addEventListener('submit', () => {
     contactForm.classList.add('sent');
     const button = contactForm.querySelector('button');
-    button.classList.add('button--success');
-    setTimeout(() => {
-      button.classList.remove('button--success');
-      contactForm.reset();
-      contactForm.classList.remove('sent');
-    }, 2000);
+    if (button) {
+      button.classList.add('button--loading');
+      button.setAttribute('disabled', 'disabled');
+    }
   });
 }
 
